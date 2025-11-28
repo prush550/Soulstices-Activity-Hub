@@ -1,0 +1,24 @@
+{
+  "name": "soulstices-activity-hub",
+  "version": "0.1.0",
+  "description": "Community platform for discovering local activities in Bhopal",
+  "private": true,
+  "workspaces": [
+    "frontend",
+    "backend"
+  ],
+  "scripts": {
+    "install-all": "npm install && cd backend && npm install && cd ../frontend && npm install",
+    "dev": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\"",
+    "dev:backend": "cd backend && npm start",
+    "dev:frontend": "cd frontend && npm run dev"
+  },
+  "keywords": [
+    "activities",
+    "events",
+    "community",
+    "bhopal"
+  ],
+  "author": "prush550",
+  "license": "UNLICENSED"
+}

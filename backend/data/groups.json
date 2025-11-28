@@ -1,0 +1,62 @@
+[
+  {
+    "id": "grp001",
+    "name": "Bhopal Badminton Club",
+    "category": "Sports - Badminton",
+    "description": "Premier badminton club in Bhopal. We organize regular sessions for players of all levels.",
+    "memberCount": 45,
+    "joiningType": "open",
+    "admins": ["admin001"],
+    "coverImage": "badminton-cover.jpg"
+  },
+  {
+    "id": "grp002",
+    "name": "Bhopal Fitness Enthusiasts",
+    "category": "Fitness & Wellness",
+    "description": "Community of fitness lovers. We do morning walks, runs, yoga, and outdoor activities.",
+    "memberCount": 120,
+    "joiningType": "open",
+    "admins": ["admin002", "admin003"],
+    "coverImage": "fitness-cover.jpg"
+  },
+  {
+    "id": "grp003",
+    "name": "Bhopal Football League",
+    "category": "Sports - Football",
+    "description": "Football enthusiasts unite! Regular matches, tournaments, and practice sessions.",
+    "memberCount": 80,
+    "joiningType": "application",
+    "admins": ["admin004"],
+    "coverImage": "football-cover.jpg"
+  },
+  {
+    "id": "grp004",
+    "name": "Mindful Bhopal",
+    "category": "Yoga & Meditation",
+    "description": "Find your inner peace. We conduct yoga, meditation, and mindfulness sessions.",
+    "memberCount": 65,
+    "joiningType": "open",
+    "admins": ["admin005"],
+    "coverImage": "yoga-cover.jpg"
+  },
+  {
+    "id": "grp005",
+    "name": "Bhopal Cyclists Club",
+    "category": "Sports - Cycling",
+    "description": "Cycling enthusiasts exploring Bhopal and beyond. Weekend rides and cycling events.",
+    "memberCount": 35,
+    "joiningType": "open",
+    "admins": ["admin006"],
+    "coverImage": "cycling-cover.jpg"
+  },
+  {
+    "id": "grp006",
+    "name": "Elite Sports Bhopal",
+    "category": "Multi-Sport",
+    "description": "Premium sports club offering basketball, tennis, and swimming. Membership required.",
+    "memberCount": 50,
+    "joiningType": "application",
+    "admins": ["admin007", "admin008"],
+    "coverImage": "elite-sports-cover.jpg"
+  }
+]

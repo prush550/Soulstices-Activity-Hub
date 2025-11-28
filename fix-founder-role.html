@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fix Founder Role - Soulstices</title>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #0a0a0a;
+            color: #fff;
+            padding: 40px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .container {
+            background: #1a1a1a;
+            border: 1px solid #2a2a2a;
+            border-radius: 8px;
+            padding: 30px;
+        }
+        h1 {
+            color: #f97316;
+            margin-bottom: 20px;
+        }
+        button {
+            background: #f97316;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px 5px;
+        }
+        button:hover {
+            background: #fb923c;
+        }
+        button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        .output {
+            background: #0a0a0a;
+            border: 1px solid #2a2a2a;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 6px;
+            white-space: pre-wrap;
+            font-family: monospace;
+            font-size: 14px;
+        }
+        .success {
+            color: #4ade80;
+        }
+        .error {
+            color: #f87171;
+        }
+        .warning {
+            color: #fbbf24;
+        }
+        .info {
+            color: #60a5fa;
+        }
+        input {
+            width: 100%;
+            padding: 12px;
+            background: #0a0a0a;
+            border: 1px solid #2a2a2a;
+            border-radius: 6px;
+            color: white;
+            font-size: 16px;
+            margin: 10px 0;
+        }
+        label {
+            display: block;
+            margin-top: 15px;
+            color: #9ca3af;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔧 Fix Founder Role</h1>
+        <p>This tool will help you check and update your user role to 'founder' in the database.</p>
+
+        <div id="output" class="output">Ready to check your user role...</div>
+
+        <div>
+            <label>Your Email (mail.soulstices@gmail.com):</label>
+            <input type="email" id="emailInput" value="mail.soulstices@gmail.com" readonly>
+        </div>
+
+        <div style="margin-top: 20px;">
+            <button onclick="checkCurrentRole()" id="checkBtn">1. Check Current Role</button>
+            <button onclick="fixFounderRole()" id="fixBtn">2. Fix Role to Founder</button>
+            <button onclick="verifyFix()" id="verifyBtn">3. Verify Fix</button>
+        </div>
+
+        <div style="margin-top: 20px; padding: 15px; background: #0a0a0a; border-radius: 6px;">
+            <h3 style="color: #f97316; margin-top: 0;">Instructions:</h3>
+            <ol style="color: #9ca3af; line-height: 1.8;">
+                <li>Click <strong>"1. Check Current Role"</strong> to see your current role</li>
+                <li>If role is not 'founder', click <strong>"2. Fix Role to Founder"</strong></li>
+                <li>Click <strong>"3. Verify Fix"</strong> to confirm the change</li>
+                <li>Refresh your main app (localhost:5173) and sign in again</li>
+            </ol>
+        </div>
+    </div>
+
+    <script>
+        const SUPABASE_URL = 'https://mejsgjtnokcarssppdmx.supabase.co'
+        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1lanNnanRub2tjYXJzc3BwZG14Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjM2MjA3NjIsImV4cCI6MjA3OTE5Njc2Mn0.YLbo4hEAAqyw8juUBaSypEh0AEU_U5Xy-81Oq-vxz4g'
+
+        const { createClient } = supabase
+        const supabaseClient = createClient(SUPABASE_URL, SUPABASE_ANON_KEY)
+        const output = document.getElementById('output')
+        const founderEmail = 'mail.soulstices@gmail.com'
+
+        function log(message, type = 'info') {
+            const timestamp = new Date().toLocaleTimeString()
+            const colors = {
+                success: 'success',
+                error: 'error',
+                warning: 'warning',
+                info: 'info'
+            }
+            output.innerHTML += `\n<span class="${colors[type]}">[${timestamp}] ${message}</span>`
+            output.scrollTop = output.scrollHeight
+        }
+
+        async function checkCurrentRole() {
+            log('🔍 Checking current role for: ' + founderEmail, 'info')
+
+            try {
+                const { data, error } = await supabaseClient
+                    .from('users')
+                    .select('id, email, name, role, created_at')
+                    .eq('email', founderEmail)
+                    .single()
+
+                if (error) {
+                    if (error.code === 'PGRST116') {
+                        log('❌ ERROR: User not found in database!', 'error')
+                        log('📝 This means the user profile was not created during signup.', 'warning')
+                        log('💡 Solution: Check if there is a database trigger to create user profile on signup.', 'warning')
+                        return
+                    }
+                    throw error
+                }
+
+                log('✅ User found in database!', 'success')
+                log('📋 User Details:', 'info')
+                log(`   ID: ${data.id}`, 'info')
+                log(`   Email: ${data.email}`, 'info')
+                log(`   Name: ${data.name}`, 'info')
+                log(`   Role: ${data.role}`, data.role === 'founder' ? 'success' : 'warning')
+                log(`   Created: ${new Date(data.created_at).toLocaleString()}`, 'info')
+
+                if (data.role === 'founder') {
+                    log('🎉 Role is already set to "founder"!', 'success')
+                    log('💡 If you still can\'t see the Founder Dashboard, try:', 'info')
+                    log('   1. Sign out from the app', 'info')
+                    log('   2. Clear browser cache/local storage', 'info')
+                    log('   3. Sign in again', 'info')
+                } else {
+                    log('⚠️ Role is currently: "' + data.role + '"', 'warning')
+                    log('💡 Click "2. Fix Role to Founder" to update it.', 'info')
+                }
+
+            } catch (err) {
+                log('❌ ERROR: ' + err.message, 'error')
+                console.error(err)
+            }
+        }
+
+        async function fixFounderRole() {
+            log('🔧 Updating role to "founder" for: ' + founderEmail, 'info')
+
+            try {
+                const { data, error } = await supabaseClient
+                    .from('users')
+                    .update({ role: 'founder' })
+                    .eq('email', founderEmail)
+                    .select()
+
+                if (error) throw error
+
+                if (data && data.length > 0) {
+                    log('✅ SUCCESS! Role updated to "founder"', 'success')
+                    log('📋 Updated user:', 'info')
+                    log(`   Email: ${data[0].email}`, 'info')
+                    log(`   Name: ${data[0].name}`, 'info')
+                    log(`   Role: ${data[0].role}`, 'success')
+                    log('', 'info')
+                    log('🎉 Now click "3. Verify Fix" to confirm!', 'info')
+                } else {
+                    log('⚠️ WARNING: No rows were updated', 'warning')
+                    log('💡 User might not exist. Click "1. Check Current Role" first.', 'warning')
+                }
+
+            } catch (err) {
+                log('❌ ERROR: ' + err.message, 'error')
+                log('💡 Possible reasons:', 'warning')
+                log('   - Row Level Security (RLS) might be preventing the update', 'warning')
+                log('   - You might need to update directly in Supabase Dashboard', 'warning')
+                console.error(err)
+            }
+        }
+
+        async function verifyFix() {
+            log('✅ Verifying the fix...', 'info')
+            await checkCurrentRole()
+            log('', 'info')
+            log('🔄 Next steps:', 'info')
+            log('   1. Go back to your app: http://localhost:5173', 'info')
+            log('   2. Sign out if you are signed in', 'info')
+            log('   3. Sign in again with: ' + founderEmail, 'info')
+            log('   4. You should now see the 👑 Founder badge!', 'success')
+        }
+
+        // Auto-check on load
+        window.addEventListener('load', () => {
+            log('🚀 Tool ready! Click "1. Check Current Role" to start.', 'success')
+        })
+    </script>
+</body>
+</html>
