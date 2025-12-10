@@ -48,23 +48,23 @@ function SignIn() {
 
   return (
     <div className="min-h-screen flex items-center justify-center px-4 py-12">
-      <div className="max-w-md w-full">
+      <div className="max-w-md w-full fade-in-up">
         {/* Header */}
         <div className="text-center mb-8">
-          <h1 className="font-display text-4xl font-bold text-white mb-2">
+          <h1 className="font-display text-4xl font-bold text-text-primary mb-2">
             Welcome Back
           </h1>
-          <p className="text-gray-400">
+          <p className="text-text-secondary">
             Sign in to your Soulstices account
           </p>
         </div>
 
         {/* Form */}
-        <div className="bg-dark-card border border-dark-border rounded-lg p-8">
+        <div className="glass rounded-2xl p-8">
           <form onSubmit={handleSubmit} className="space-y-6">
             {/* Email */}
             <div>
-              <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-2">
+              <label htmlFor="email" className="block text-sm font-medium text-text-secondary mb-2">
                 Email Address
               </label>
               <input
@@ -74,14 +74,14 @@ function SignIn() {
                 required
                 value={formData.email}
                 onChange={handleChange}
-                className="w-full px-4 py-3 bg-dark-bg border border-dark-border rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-accent-primary"
+                className="w-full px-4 py-3 bg-dark-card border border-emerald/20 rounded-lg text-text-primary placeholder-text-muted focus:outline-none focus:border-emerald transition-all"
                 placeholder="you@example.com"
               />
             </div>
 
             {/* Password */}
             <div>
-              <label htmlFor="password" className="block text-sm font-medium text-gray-300 mb-2">
+              <label htmlFor="password" className="block text-sm font-medium text-text-secondary mb-2">
                 Password
               </label>
               <input
@@ -91,7 +91,7 @@ function SignIn() {
                 required
                 value={formData.password}
                 onChange={handleChange}
-                className="w-full px-4 py-3 bg-dark-bg border border-dark-border rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-accent-primary"
+                className="w-full px-4 py-3 bg-dark-card border border-emerald/20 rounded-lg text-text-primary placeholder-text-muted focus:outline-none focus:border-emerald transition-all"
                 placeholder="Enter your password"
               />
             </div>
@@ -101,11 +101,11 @@ function SignIn() {
               <label className="flex items-center">
                 <input
                   type="checkbox"
-                  className="w-4 h-4 text-accent-primary bg-dark-bg border-dark-border rounded focus:ring-accent-primary"
+                  className="w-4 h-4 text-emerald bg-dark-bg border-emerald/20 rounded focus:ring-emerald"
                 />
-                <span className="ml-2 text-sm text-gray-400">Remember me</span>
+                <span className="ml-2 text-sm text-text-secondary">Remember me</span>
               </label>
-              <Link to="/forgot-password" className="text-sm text-accent-primary hover:text-accent-secondary">
+              <Link to="/forgot-password" className="text-sm text-emerald hover:text-emerald-light transition-colors">
                 Forgot password?
               </Link>
             </div>
@@ -121,7 +121,7 @@ function SignIn() {
             <button
               type="submit"
               disabled={loading}
-              className="w-full bg-accent-primary hover:bg-accent-secondary text-white py-3 rounded-lg font-bold disabled:opacity-50 disabled:cursor-not-allowed"
+              className="w-full bg-gradient-emerald text-text-primary py-3 rounded-lg font-bold shadow-button hover:-translate-y-1 transition-all disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:translate-y-0"
             >
               {loading ? 'Signing In...' : 'Sign In'}
             </button>
@@ -129,9 +129,9 @@ function SignIn() {
 
           {/* Sign Up Link */}
           <div className="mt-6 text-center">
-            <p className="text-gray-400 text-sm">
+            <p className="text-text-secondary text-sm">
               Don't have an account?{' '}
-              <Link to="/signup" className="text-accent-primary hover:text-accent-secondary font-medium">
+              <Link to="/signup" className="text-emerald hover:text-emerald-light font-medium transition-colors">
                 Sign Up
               </Link>
             </p>
@@ -139,9 +139,9 @@ function SignIn() {
         </div>
 
         {/* Info Box */}
-        <div className="mt-6 bg-accent-primary/10 border border-accent-primary/30 rounded-lg p-4">
-          <p className="text-sm text-gray-300 text-center">
-            🎉 First time here? Create an account to join activities and connect with your community!
+        <div className="mt-6 bg-emerald/15 border border-emerald/30 rounded-lg p-4">
+          <p className="text-sm text-text-secondary text-center">
+            First time here? Create an account to join activities and connect with your community!
           </p>
         </div>
       </div>

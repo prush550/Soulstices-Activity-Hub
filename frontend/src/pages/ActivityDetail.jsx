@@ -373,8 +373,8 @@ function ActivityDetail() {
     return (
       <div className="flex items-center justify-center min-h-screen">
         <div className="text-center">
-          <div className="w-16 h-16 border-4 border-accent-primary border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-          <p className="text-gray-400">Loading activity details...</p>
+          <div className="w-16 h-16 border-4 border-emerald border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+          <p className="text-text-muted">Loading activity details...</p>
         </div>
       </div>
     )
@@ -385,10 +385,10 @@ function ActivityDetail() {
       <div className="flex items-center justify-center min-h-screen">
         <div className="text-center">
           <div className="text-6xl mb-4">😕</div>
-          <h2 className="text-2xl font-display font-bold text-white mb-4">Activity Not Found</h2>
-          <button 
+          <h2 className="text-2xl font-display font-bold text-text-primary mb-4">Activity Not Found</h2>
+          <button
             onClick={() => navigate('/')}
-            className="bg-accent-primary hover:bg-accent-secondary text-white px-6 py-3 rounded-md font-medium"
+            className="bg-gradient-emerald shadow-button text-text-primary px-6 py-3 rounded-lg font-medium hover:-translate-y-1 transition-all"
           >
             Back to Home
           </button>
@@ -402,38 +402,38 @@ function ActivityDetail() {
   return (
     <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       {/* Back Button */}
-      <button 
+      <button
         onClick={() => navigate(-1)}
-        className="flex items-center space-x-2 text-gray-400 hover:text-white mb-6"
+        className="flex items-center space-x-2 text-text-muted hover:text-text-primary mb-6 transition-colors"
       >
         <span>←</span>
         <span>Back</span>
       </button>
 
       {/* Header Section */}
-      <div className="bg-dark-card border border-dark-border rounded-lg p-8 mb-6">
+      <div className="glass rounded-2xl border border-emerald/10 p-8 mb-6">
         <div className="flex justify-between items-start mb-6">
           <div className="flex-1">
-            <h1 className="font-display text-4xl font-bold text-white mb-3">
+            <h1 className="font-display text-4xl font-bold text-text-primary mb-3">
               {activity.title}
             </h1>
-            <p className="text-lg text-gray-400">
-              Organized by <span className="text-accent-primary font-semibold">{activity.groupName}</span>
+            <p className="text-lg text-text-secondary">
+              Organized by <span className="text-emerald font-semibold">{activity.groupName}</span>
             </p>
           </div>
           <div className="flex space-x-3">
             {activity.type === 'private' && (
-              <span className="bg-purple-500/20 text-purple-300 px-4 py-2 rounded-full text-sm font-medium">
+              <span className="bg-emerald/15 border border-emerald/30 text-emerald px-4 py-2 rounded-full text-sm font-medium">
                 🔒 Private Event
               </span>
             )}
             {activity.type === 'invite_only' && (
-              <span className="bg-blue-500/20 text-blue-300 px-4 py-2 rounded-full text-sm font-medium">
+              <span className="bg-gold/15 border border-gold/30 text-gold px-4 py-2 rounded-full text-sm font-medium">
                 🎫 Invite-Only
               </span>
             )}
             {activity.type === 'public' && (
-              <span className="bg-green-500/20 text-green-300 px-4 py-2 rounded-full text-sm font-medium">
+              <span className="bg-emerald/15 border border-emerald/30 text-emerald px-4 py-2 rounded-full text-sm font-medium">
                 🌍 Public Event
               </span>
             )}
@@ -443,38 +443,38 @@ function ActivityDetail() {
         {/* Key Details Grid */}
         <div className="grid md:grid-cols-3 gap-6 mb-6">
           {/* Date & Time */}
-          <div className="bg-dark-bg rounded-lg p-4">
-            <div className="text-accent-primary text-sm font-semibold mb-2">📅 DATE & TIME</div>
-            <div className="text-white font-medium">{formatDate(activity.date)}</div>
-            <div className="text-gray-400 text-sm mt-1">
+          <div className="bg-dark-bg rounded-xl p-4">
+            <div className="text-emerald text-[11px] uppercase font-semibold mb-2 tracking-wide">📅 DATE & TIME</div>
+            <div className="text-text-primary font-medium">{formatDate(activity.date)}</div>
+            <div className="text-text-muted text-sm mt-1">
               {formatTime(activity.start_time)} - {formatTime(activity.end_time)}
             </div>
           </div>
 
           {/* Location */}
-          <div className="bg-dark-bg rounded-lg p-4">
-            <div className="text-accent-primary text-sm font-semibold mb-2">📍 LOCATION</div>
-            <div className="text-white font-medium">{activity.place}</div>
-            <div className="text-gray-400 text-sm mt-1">Bhopal, Madhya Pradesh</div>
+          <div className="bg-dark-bg rounded-xl p-4">
+            <div className="text-emerald text-[11px] uppercase font-semibold mb-2 tracking-wide">📍 LOCATION</div>
+            <div className="text-text-primary font-medium">{activity.place}</div>
+            <div className="text-text-muted text-sm mt-1">Bhopal, Madhya Pradesh</div>
           </div>
 
           {/* Payment */}
-          <div className="bg-dark-bg rounded-lg p-4">
-            <div className="text-accent-primary text-sm font-semibold mb-2">💰 PAYMENT</div>
-            <div className="text-white font-medium text-lg">{activity.payment}</div>
+          <div className="bg-dark-bg rounded-xl p-4">
+            <div className="text-emerald text-[11px] uppercase font-semibold mb-2 tracking-wide">💰 PAYMENT</div>
+            <div className="text-text-primary font-medium text-lg">{activity.payment}</div>
           </div>
         </div>
 
         {/* Availability Status */}
-        <div className={`bg-dark-bg rounded-lg p-4 border-l-4 ${availability.available ? 'border-green-400' : 'border-red-400'}`}>
+        <div className={`bg-dark-bg rounded-xl p-4 border-l-4 ${availability.available ? 'border-emerald' : 'border-red-400'}`}>
           <div className="flex items-center justify-between">
             <div>
-              <span className="text-gray-400">👥 Participants: </span>
-              <span className="text-white font-semibold">
+              <span className="text-text-muted">👥 Participants: </span>
+              <span className="text-text-primary font-semibold">
                 {participantsLoading ? '...' : participants.length}
               </span>
               {activity.participant_limit && (
-                <span className="text-gray-400"> / {activity.participant_limit}</span>
+                <span className="text-text-muted"> / {activity.participant_limit}</span>
               )}
             </div>
             <span className={`${availability.color} font-semibold`}>
@@ -490,7 +490,7 @@ function ActivityDetail() {
           <button
             onClick={handleLeaveActivity}
             disabled={isJoining}
-            className="flex-1 min-w-[200px] py-4 rounded-lg font-bold text-lg bg-green-600 hover:bg-red-600 text-white transition-colors"
+            className="flex-1 min-w-[200px] py-4 rounded-xl font-bold text-lg bg-gradient-emerald shadow-button hover:bg-red-600 text-text-primary transition-all hover:-translate-y-1"
           >
             {isJoining ? 'Processing...' : '✓ Joined - Click to Leave'}
           </button>
@@ -498,9 +498,9 @@ function ActivityDetail() {
           <button
             onClick={handleJoinActivity}
             disabled={!availability.available || isJoining}
-            className={`flex-1 min-w-[200px] py-4 rounded-lg font-bold text-lg ${
+            className={`flex-1 min-w-[200px] py-4 rounded-xl font-bold text-lg transition-all ${
               availability.available && !isJoining
-                ? 'bg-accent-primary hover:bg-accent-secondary text-white'
+                ? 'bg-gradient-emerald shadow-button text-text-primary hover:-translate-y-1'
                 : 'bg-gray-600 text-gray-400 cursor-not-allowed'
             }`}
           >
@@ -513,17 +513,17 @@ function ActivityDetail() {
                 : 'Activity Full'}
           </button>
         )}
-        
-        <button 
+
+        <button
           onClick={handleAddToCalendar}
-          className="px-6 py-4 bg-dark-card hover:bg-dark-hover border border-dark-border rounded-lg font-medium text-white"
+          className="px-6 py-4 glass border border-emerald/10 hover:border-emerald/30 rounded-xl font-medium text-text-primary transition-all hover:-translate-y-1"
         >
           📅 Add to Calendar
         </button>
-        
-        <button 
+
+        <button
           onClick={() => setShowShareModal(true)}
-          className="px-6 py-4 bg-dark-card hover:bg-dark-hover border border-dark-border rounded-lg font-medium text-white"
+          className="px-6 py-4 glass border border-emerald/10 hover:border-emerald/30 rounded-xl font-medium text-text-primary transition-all hover:-translate-y-1"
         >
           🔗 Share
         </button>
@@ -531,15 +531,15 @@ function ActivityDetail() {
 
       {/* Description */}
       {activity.description && (
-        <div className="bg-dark-card border border-dark-border rounded-lg p-6 mb-6">
-          <h2 className="font-display text-xl font-bold text-white mb-4">About This Activity</h2>
-          <p className="text-gray-300 leading-relaxed">{activity.description}</p>
+        <div className="glass rounded-2xl border border-emerald/10 p-6 mb-6">
+          <h2 className="font-display text-xl font-bold text-text-primary mb-4">About This Activity</h2>
+          <p className="text-text-secondary leading-relaxed">{activity.description}</p>
         </div>
       )}
 
       {/* Google Maps */}
-      <div className="bg-dark-card border border-dark-border rounded-lg p-6 mb-6">
-        <h2 className="font-display text-xl font-bold text-white mb-4">Location</h2>
+      <div className="glass rounded-2xl border border-emerald/10 p-6 mb-6">
+        <h2 className="font-display text-xl font-bold text-text-primary mb-4">Location</h2>
         <div className="rounded-lg overflow-hidden h-80">
           <iframe
             width="100%"
@@ -554,23 +554,23 @@ function ActivityDetail() {
 
       {/* Group Information */}
       {groupInfo && (
-        <div className="bg-dark-card border border-dark-border rounded-lg p-6 mb-6">
+        <div className="glass rounded-2xl border border-emerald/10 p-6 mb-6">
           <div className="flex items-start justify-between mb-4">
             <div>
-              <h2 className="font-display text-xl font-bold text-white mb-2">Organized By</h2>
-              <p className="text-gray-400 text-sm">Learn more about the group hosting this activity</p>
+              <h2 className="font-display text-xl font-bold text-text-primary mb-2">Organized By</h2>
+              <p className="text-text-muted text-sm">Learn more about the group hosting this activity</p>
             </div>
             <button
               onClick={() => navigate(`/group/${groupInfo.id}`)}
-              className="bg-accent-primary hover:bg-accent-secondary text-white px-4 py-2 rounded-lg font-medium text-sm"
+              className="bg-gradient-emerald shadow-button text-text-primary px-4 py-2 rounded-lg font-medium text-sm hover:-translate-y-1 transition-all"
             >
               View Group →
             </button>
           </div>
 
-          <div className="bg-dark-bg rounded-lg p-4">
+          <div className="bg-dark-bg rounded-xl p-4">
             <div className="flex items-start space-x-4">
-              <div className="flex-shrink-0 w-16 h-16 bg-gradient-to-br from-accent-primary to-accent-secondary rounded-lg flex items-center justify-center text-2xl">
+              <div className="flex-shrink-0 w-16 h-16 bg-gradient-brand rounded-xl flex items-center justify-center text-2xl">
                 {groupInfo.category === 'Social' && '🎉'}
                 {groupInfo.category === 'Sports' && '⚽'}
                 {groupInfo.category === 'Cultural' && '🎭'}
@@ -581,8 +581,8 @@ function ActivityDetail() {
               </div>
 
               <div className="flex-1">
-                <h3 className="font-display text-lg font-bold text-white mb-1">{groupInfo.name}</h3>
-                <div className="flex items-center space-x-4 text-sm text-gray-400 mb-2">
+                <h3 className="font-display text-lg font-bold text-text-primary mb-1">{groupInfo.name}</h3>
+                <div className="flex items-center space-x-4 text-sm text-text-muted mb-2">
                   <span className="flex items-center space-x-1">
                     <span>📁</span>
                     <span>{groupInfo.category}</span>
@@ -592,26 +592,26 @@ function ActivityDetail() {
                     <span>{groupInfo.member_count || 0} members</span>
                   </span>
                   {groupInfo.joining_type === 'public' && (
-                    <span className="bg-green-500/20 text-green-300 px-2 py-1 rounded text-xs font-medium">
+                    <span className="bg-emerald/15 border border-emerald/30 text-emerald px-2 py-1 rounded text-xs font-medium">
                       Public
                     </span>
                   )}
                   {groupInfo.joining_type === 'invite_only' && (
-                    <span className="bg-blue-500/20 text-blue-300 px-2 py-1 rounded text-xs font-medium">
+                    <span className="bg-gold/15 border border-gold/30 text-gold px-2 py-1 rounded text-xs font-medium">
                       Invite-Only
                     </span>
                   )}
                   {groupInfo.joining_type === 'screening' && (
-                    <span className="bg-purple-500/20 text-purple-300 px-2 py-1 rounded text-xs font-medium">
+                    <span className="bg-emerald/15 border border-emerald/30 text-emerald px-2 py-1 rounded text-xs font-medium">
                       Screening
                     </span>
                   )}
                 </div>
                 {groupInfo.description && (
-                  <p className="text-gray-300 text-sm line-clamp-2">{groupInfo.description}</p>
+                  <p className="text-text-secondary text-sm line-clamp-2">{groupInfo.description}</p>
                 )}
                 {!isMember && groupInfo.joining_type !== 'public' && (
-                  <p className="text-yellow-400 text-sm mt-2">
+                  <p className="text-gold text-sm mt-2">
                     ℹ️ This is a {groupInfo.joining_type === 'invite_only' ? 'invite-only' : 'screening'} group. Join the group to access all their activities.
                   </p>
                 )}
@@ -622,13 +622,13 @@ function ActivityDetail() {
       )}
 
       {/* Participants Section */}
-      <div className="bg-dark-card border border-dark-border rounded-lg p-6 mb-6">
+      <div className="glass rounded-2xl border border-emerald/10 p-6 mb-6">
         <div className="flex items-center justify-between mb-4">
           <div>
-            <h2 className="font-display text-xl font-bold text-white">
+            <h2 className="font-display text-xl font-bold text-text-primary">
               Participants {!participantsLoading && participants.length > 0 && `(${participants.length})`}
             </h2>
-            <p className="text-gray-400 text-sm mt-1">
+            <p className="text-text-muted text-sm mt-1">
               {participantsLoading ? (
                 'Loading participant count...'
               ) : activity.participant_limit ? (
@@ -642,12 +642,12 @@ function ActivityDetail() {
 
         {/* Privacy Notice for Private Activities */}
         {activity.type === 'private' && !isMember && (
-          <div className="bg-yellow-500/10 border border-yellow-500/30 rounded-lg p-4 mb-4">
+          <div className="bg-gold/10 border border-gold/30 rounded-xl p-4 mb-4">
             <div className="flex items-start space-x-3">
               <span className="text-2xl">🔒</span>
               <div>
-                <h3 className="font-semibold text-yellow-300 mb-1">Private Activity</h3>
-                <p className="text-gray-300 text-sm">
+                <h3 className="font-semibold text-gold mb-1">Private Activity</h3>
+                <p className="text-text-secondary text-sm">
                   Only group members can see who has joined this activity. Join the group to view participants.
                 </p>
               </div>
@@ -658,15 +658,15 @@ function ActivityDetail() {
         {/* Participant List */}
         {participantsLoading ? (
           <div className="text-center py-8">
-            <div className="w-8 h-8 border-4 border-accent-primary border-t-transparent rounded-full animate-spin mx-auto mb-2"></div>
-            <p className="text-gray-400 text-sm">Loading participants...</p>
+            <div className="w-8 h-8 border-4 border-emerald border-t-transparent rounded-full animate-spin mx-auto mb-2"></div>
+            <p className="text-text-muted text-sm">Loading participants...</p>
           </div>
         ) : (activity.type === 'private' && !isMember) ? (
-          <div className="text-center py-8 text-gray-400">
+          <div className="text-center py-8 text-text-muted">
             <p>Join the group to see participants</p>
           </div>
         ) : participants.length === 0 ? (
-          <div className="text-center py-8 text-gray-400">
+          <div className="text-center py-8 text-text-muted">
             <div className="text-4xl mb-2">👥</div>
             <p>No participants yet</p>
             <p className="text-sm mt-1">Be the first to join!</p>
@@ -676,7 +676,7 @@ function ActivityDetail() {
             {participants.map((participant, index) => (
               <div
                 key={participant.id}
-                className="bg-dark-bg border border-dark-border rounded-lg p-4 hover:border-accent-primary/50 transition-colors"
+                className="bg-dark-bg border border-emerald/10 rounded-xl p-4 hover:border-emerald/50 transition-colors"
               >
                 <div className="flex items-center space-x-3">
                   {/* Profile Picture or Avatar */}
@@ -688,7 +688,7 @@ function ActivityDetail() {
                         className="w-12 h-12 rounded-full object-cover"
                       />
                     ) : (
-                      <div className="w-12 h-12 rounded-full bg-gradient-to-br from-accent-primary to-accent-secondary flex items-center justify-center text-white font-bold text-lg">
+                      <div className="w-12 h-12 rounded-full bg-gradient-brand flex items-center justify-center text-text-primary font-bold text-lg">
                         {participant.user.name?.charAt(0).toUpperCase() || '?'}
                       </div>
                     )}
@@ -697,21 +697,21 @@ function ActivityDetail() {
                   {/* User Info */}
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center space-x-2">
-                      <h3 className="font-semibold text-white truncate">
+                      <h3 className="font-semibold text-text-primary truncate">
                         {participant.user.name || 'Anonymous'}
                       </h3>
                       {index === 0 && (
-                        <span className="bg-yellow-500/20 text-yellow-300 px-2 py-0.5 rounded text-xs font-medium">
+                        <span className="bg-gold/15 border border-gold/30 text-gold px-2 py-0.5 rounded text-xs font-medium">
                           First
                         </span>
                       )}
                       {participant.user.id === user?.id && (
-                        <span className="bg-accent-primary/20 text-accent-primary px-2 py-0.5 rounded text-xs font-medium">
+                        <span className="bg-emerald/15 border border-emerald/30 text-emerald px-2 py-0.5 rounded text-xs font-medium">
                           You
                         </span>
                       )}
                     </div>
-                    <p className="text-gray-400 text-sm truncate">
+                    <p className="text-text-muted text-sm truncate">
                       Joined {new Date(participant.registered_at).toLocaleDateString('en-IN', {
                         month: 'short',
                         day: 'numeric',
@@ -729,13 +729,13 @@ function ActivityDetail() {
       {/* Share Modal */}
       {showShareModal && (
         <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4">
-          <div className="bg-dark-card border border-dark-border rounded-lg p-6 max-w-md w-full">
-            <h3 className="font-display text-xl font-bold text-white mb-4">Share Activity</h3>
+          <div className="glass rounded-2xl border border-emerald/10 p-6 max-w-md w-full">
+            <h3 className="font-display text-xl font-bold text-text-primary mb-4">Share Activity</h3>
 
             <div className="space-y-3 mb-6">
               <button
                 onClick={() => handleShare('whatsapp')}
-                className="w-full bg-green-600 hover:bg-green-700 text-white py-3 rounded-lg font-medium flex items-center justify-center space-x-2"
+                className="w-full bg-green-600 hover:bg-green-700 text-text-primary py-3 rounded-lg font-medium flex items-center justify-center space-x-2 transition-colors"
               >
                 <span>💬</span>
                 <span>Share on WhatsApp</span>
@@ -743,7 +743,7 @@ function ActivityDetail() {
 
               <button
                 onClick={() => handleShare('copy')}
-                className="w-full bg-dark-hover hover:bg-dark-border text-white py-3 rounded-lg font-medium flex items-center justify-center space-x-2"
+                className="w-full bg-dark-hover hover:bg-dark-border text-text-primary py-3 rounded-lg font-medium flex items-center justify-center space-x-2 transition-colors"
               >
                 <span>🔗</span>
                 <span>{copySuccess ? 'Link Copied!' : 'Copy Link'}</span>
@@ -752,7 +752,7 @@ function ActivityDetail() {
 
             <button
               onClick={() => setShowShareModal(false)}
-              className="w-full bg-accent-primary hover:bg-accent-secondary text-white py-2 rounded-lg font-medium"
+              className="w-full bg-gradient-emerald shadow-button text-text-primary py-2 rounded-lg font-medium hover:-translate-y-1 transition-all"
             >
               Close
             </button>
@@ -763,10 +763,10 @@ function ActivityDetail() {
       {/* Invite Code Modal */}
       {showInviteCodeModal && (
         <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4">
-          <div className="bg-dark-card border border-dark-border rounded-lg p-6 max-w-md w-full">
-            <h3 className="font-display text-xl font-bold text-white mb-4">🔒 Enter Invite Code</h3>
+          <div className="glass rounded-2xl border border-emerald/10 p-6 max-w-md w-full">
+            <h3 className="font-display text-xl font-bold text-text-primary mb-4">🔒 Enter Invite Code</h3>
 
-            <p className="text-gray-400 mb-4">
+            <p className="text-text-muted mb-4">
               This is an invite-only activity. Please enter the invite code you received from the organizer.
             </p>
 
@@ -775,7 +775,7 @@ function ActivityDetail() {
               value={inviteCodeInput}
               onChange={(e) => setInviteCodeInput(e.target.value.toUpperCase())}
               placeholder="Enter invite code"
-              className="w-full bg-dark-bg border border-dark-border text-white px-4 py-3 rounded-lg mb-4 focus:outline-none focus:border-accent-primary uppercase tracking-wider text-center text-lg font-mono"
+              className="w-full bg-dark-card border border-emerald/20 text-text-primary px-4 py-3 rounded-lg mb-4 focus:outline-none focus:border-emerald uppercase tracking-wider text-center text-lg font-mono transition-colors"
               maxLength={8}
               autoFocus
             />
@@ -786,17 +786,17 @@ function ActivityDetail() {
                   setShowInviteCodeModal(false)
                   setInviteCodeInput('')
                 }}
-                className="flex-1 bg-dark-hover hover:bg-dark-border text-white py-3 rounded-lg font-medium"
+                className="flex-1 bg-dark-hover hover:bg-dark-border text-text-primary py-3 rounded-lg font-medium transition-colors"
               >
                 Cancel
               </button>
               <button
                 onClick={handleInviteCodeSubmit}
                 disabled={isJoining || !inviteCodeInput.trim()}
-                className={`flex-1 py-3 rounded-lg font-medium ${
+                className={`flex-1 py-3 rounded-lg font-medium transition-all ${
                   isJoining || !inviteCodeInput.trim()
                     ? 'bg-gray-600 text-gray-400 cursor-not-allowed'
-                    : 'bg-accent-primary hover:bg-accent-secondary text-white'
+                    : 'bg-gradient-emerald shadow-button text-text-primary hover:-translate-y-1'
                 }`}
               >
                 {isJoining ? 'Joining...' : 'Join Activity'}
@@ -808,11 +808,11 @@ function ActivityDetail() {
 
       {/* Info Box */}
       {!user && (
-        <div className="bg-gradient-to-r from-accent-primary/10 to-accent-secondary/10 border border-accent-primary/30 rounded-lg p-6">
-          <h3 className="font-display text-lg font-bold text-white mb-2">
+        <div className="bg-gradient-emerald/10 border border-emerald/30 rounded-2xl p-6">
+          <h3 className="font-display text-lg font-bold text-text-primary mb-2">
             Need to sign in
           </h3>
-          <p className="text-gray-300 text-sm">
+          <p className="text-text-secondary text-sm">
             Create an account or sign in to join this activity, see participant details, and get updates from the organizers.
           </p>
         </div>

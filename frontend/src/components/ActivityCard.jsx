@@ -38,20 +38,23 @@ function ActivityCard({ activity }) {
   const availability = getAvailabilityStatus()
 
   return (
-    <div 
+    <div
       onClick={() => navigate(`/activity/${activity.id}`)}
-      className="bg-dark-card border border-dark-border rounded-lg p-6 hover:border-accent-primary hover:shadow-lg hover:shadow-accent-primary/20 cursor-pointer group"
+      className="glass rounded-2xl p-6 hover:border-emerald/30 hover:shadow-card hover:-translate-y-1 cursor-pointer group transition-all duration-300 relative overflow-hidden"
     >
+      {/* Top gradient border on hover */}
+      <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-brand opacity-0 group-hover:opacity-100 transition-opacity"></div>
+
       {/* Header */}
       <div className="flex justify-between items-start mb-4">
         <div className="flex-1">
-          <h3 className="text-xl font-display font-bold text-white mb-1 group-hover:text-accent-primary">
+          <h3 className="text-2xl font-display font-semibold text-text-primary mb-1 group-hover:text-gradient">
             {activity.title}
           </h3>
-          <p className="text-sm text-gray-400">{activity.groupName}</p>
+          <p className="text-sm text-text-secondary font-body">{activity.groupName}</p>
         </div>
         {activity.type === 'private' && (
-          <span className="bg-purple-500/20 text-purple-300 text-xs px-3 py-1 rounded-full">
+          <span className="bg-emerald/15 border border-emerald/30 text-emerald text-[11px] px-3 py-1 rounded-full uppercase tracking-wider">
             Private
           </span>
         )}
@@ -60,30 +63,30 @@ function ActivityCard({ activity }) {
       {/* Details Grid */}
       <div className="space-y-3 mb-4">
         {/* Date and Time */}
-        <div className="flex items-center space-x-2 text-gray-300">
-          <span className="text-accent-primary">📅</span>
-          <span className="font-medium">{formatDate(activity.date)}</span>
-          <span className="text-gray-500">•</span>
+        <div className="flex items-center space-x-2 text-text-secondary font-body text-[15px]">
+          <span className="text-emerald">📅</span>
+          <span className="font-medium text-text-primary">{formatDate(activity.date)}</span>
+          <span className="text-text-muted">•</span>
           <span>{formatTime(activity.start_time)} - {formatTime(activity.end_time)}</span>
         </div>
 
         {/* Location */}
-        <div className="flex items-center space-x-2 text-gray-300">
-          <span className="text-accent-primary">📍</span>
+        <div className="flex items-center space-x-2 text-text-secondary font-body text-[15px]">
+          <span className="text-gold">📍</span>
           <span>{activity.place}</span>
         </div>
 
         {/* Payment */}
-        <div className="flex items-center space-x-2 text-gray-300">
-          <span className="text-accent-primary">💰</span>
-          <span className="font-semibold">{activity.payment}</span>
+        <div className="flex items-center space-x-2 text-text-secondary font-body text-[15px]">
+          <span className="text-emerald-light">💰</span>
+          <span className="font-semibold text-text-primary">{activity.payment}</span>
         </div>
       </div>
 
       {/* Footer */}
-      <div className="flex justify-between items-center pt-4 border-t border-dark-border">
-        <div className="flex items-center space-x-4 text-sm">
-          <span className="text-gray-400">
+      <div className="flex justify-between items-center pt-4 border-t border-emerald/10">
+        <div className="flex items-center space-x-4 text-[13px] font-body">
+          <span className="text-text-secondary">
             👥 {activity.current_participants || 0} joined
           </span>
           {availability && (
@@ -92,12 +95,12 @@ function ActivityCard({ activity }) {
             </span>
           )}
         </div>
-        <button 
+        <button
           onClick={(e) => {
             e.stopPropagation()
             navigate(`/activity/${activity.id}`)
           }}
-          className="bg-accent-primary hover:bg-accent-secondary text-white px-4 py-2 rounded-md text-sm font-medium"
+          className="bg-gradient-emerald text-dark-bg px-6 py-2.5 rounded-lg text-sm font-medium font-body shadow-button hover:shadow-lg hover:-translate-y-0.5 transition-all"
         >
           View Details
         </button>

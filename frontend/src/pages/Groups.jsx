@@ -32,8 +32,8 @@ function Groups() {
     return (
       <div className="flex items-center justify-center min-h-screen">
         <div className="text-center">
-          <div className="w-16 h-16 border-4 border-accent-primary border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-          <p className="text-gray-400">Loading groups...</p>
+          <div className="w-16 h-16 border-4 border-emerald border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+          <p className="text-text-secondary">Loading groups...</p>
         </div>
       </div>
     )
@@ -42,11 +42,11 @@ function Groups() {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       {/* Header */}
-      <div className="mb-12">
-        <h1 className="font-display text-4xl md:text-5xl font-bold text-white mb-4">
+      <div className="mb-12 fade-in-up">
+        <h1 className="font-display text-4xl md:text-5xl font-bold text-text-primary mb-4">
           Discover Groups
         </h1>
-        <p className="text-xl text-gray-400">
+        <p className="text-xl text-text-secondary">
           Join communities of sports and leisure enthusiasts in Bhopal
         </p>
       </div>
@@ -57,11 +57,12 @@ function Groups() {
           <div
             key={group.id}
             onClick={() => navigate(`/group/${group.id}`)}
-            className="bg-dark-card border border-dark-border rounded-lg overflow-hidden hover:border-accent-primary hover:shadow-lg hover:shadow-accent-primary/20 cursor-pointer group"
+            className="glass rounded-2xl overflow-hidden hover:border-emerald/30 hover:shadow-lg hover:shadow-emerald/10 hover:-translate-y-1 cursor-pointer group transition-all"
           >
             {/* Group Cover */}
-            <div className="h-48 bg-gradient-to-br from-accent-primary/20 to-accent-secondary/20 flex items-center justify-center">
-              <span className="text-6xl">
+            <div className="h-48 bg-gradient-to-br from-emerald/10 to-gold/10 flex items-center justify-center relative overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-brand opacity-5"></div>
+              <span className="text-6xl relative z-10">
                 {group.category.includes('Badminton') && '🏸'}
                 {group.category.includes('Fitness') && '💪'}
                 {group.category.includes('Football') && '⚽'}
@@ -74,29 +75,29 @@ function Groups() {
             {/* Group Details */}
             <div className="p-6">
               <div className="mb-4">
-                <h3 className="text-xl font-display font-bold text-white mb-2 group-hover:text-accent-primary">
+                <h3 className="text-xl font-display font-bold text-text-primary mb-2 group-hover:text-emerald transition-colors">
                   {group.name}
                 </h3>
-                <span className="inline-block bg-accent-primary/20 text-accent-primary text-sm px-3 py-1 rounded-full">
+                <span className="inline-block bg-emerald/15 border border-emerald/30 text-emerald text-sm px-3 py-1 rounded-full">
                   {group.category}
                 </span>
               </div>
 
-              <p className="text-gray-400 text-sm mb-4 line-clamp-2">
+              <p className="text-text-secondary text-sm mb-4 line-clamp-2">
                 {group.description}
               </p>
 
               {/* Stats */}
               <div className="flex items-center justify-between mb-4 text-sm">
-                <span className="text-gray-400">
+                <span className="text-text-secondary">
                   👥 {group.member_count || 0} members
                 </span>
                 <span className={`px-2 py-1 rounded text-xs ${
                   group.joining_type === 'public'
-                    ? 'bg-green-500/20 text-green-400'
+                    ? 'bg-emerald/15 text-emerald border border-emerald/30'
                     : group.joining_type === 'invite_only'
-                    ? 'bg-blue-500/20 text-blue-400'
-                    : 'bg-yellow-500/20 text-yellow-400'
+                    ? 'bg-gold/15 text-gold border border-gold/30'
+                    : 'bg-gold/15 text-gold border border-gold/30'
                 }`}>
                   {group.joining_type === 'public' && '🌍 Public'}
                   {group.joining_type === 'invite_only' && '🎫 Invite-Only'}
@@ -110,7 +111,7 @@ function Groups() {
                   e.stopPropagation()
                   navigate(`/group/${group.id}`)
                 }}
-                className="w-full bg-accent-primary hover:bg-accent-secondary text-white py-2 rounded-md font-medium"
+                className="w-full bg-gradient-emerald text-text-primary py-2 rounded-lg font-medium shadow-button hover:-translate-y-1 transition-all"
               >
                 View Group
               </button>
@@ -123,24 +124,24 @@ function Groups() {
       {groups.length === 0 && (
         <div className="text-center py-16">
           <div className="text-6xl mb-4">🔍</div>
-          <h3 className="text-2xl font-display font-bold text-white mb-2">
+          <h3 className="text-2xl font-display font-bold text-text-primary mb-2">
             No groups yet
           </h3>
-          <p className="text-gray-400">
+          <p className="text-text-secondary">
             Be the first to create a group and build your community!
           </p>
         </div>
       )}
 
       {/* Info Section */}
-      <div className="mt-16 bg-dark-card border border-dark-border rounded-lg p-8">
-        <h2 className="font-display text-2xl font-bold text-white mb-4">
+      <div className="mt-16 glass rounded-2xl p-8">
+        <h2 className="font-display text-2xl font-bold text-text-primary mb-4">
           How Groups Work
         </h2>
-        <div className="grid md:grid-cols-2 gap-6 text-gray-300">
+        <div className="grid md:grid-cols-2 gap-6 text-text-secondary">
           <div>
-            <h3 className="font-semibold text-white mb-2 flex items-center">
-              <span className="text-accent-primary mr-2">✓</span>
+            <h3 className="font-semibold text-text-primary mb-2 flex items-center">
+              <span className="text-emerald mr-2">✓</span>
               Join Communities
             </h3>
             <p className="text-sm">
@@ -148,8 +149,8 @@ function Groups() {
             </p>
           </div>
           <div>
-            <h3 className="font-semibold text-white mb-2 flex items-center">
-              <span className="text-accent-primary mr-2">✓</span>
+            <h3 className="font-semibold text-text-primary mb-2 flex items-center">
+              <span className="text-emerald mr-2">✓</span>
               Exclusive Activities
             </h3>
             <p className="text-sm">
@@ -157,8 +158,8 @@ function Groups() {
             </p>
           </div>
           <div>
-            <h3 className="font-semibold text-white mb-2 flex items-center">
-              <span className="text-accent-primary mr-2">✓</span>
+            <h3 className="font-semibold text-text-primary mb-2 flex items-center">
+              <span className="text-emerald mr-2">✓</span>
               Stay Updated
             </h3>
             <p className="text-sm">
@@ -166,8 +167,8 @@ function Groups() {
             </p>
           </div>
           <div>
-            <h3 className="font-semibold text-white mb-2 flex items-center">
-              <span className="text-accent-primary mr-2">✓</span>
+            <h3 className="font-semibold text-text-primary mb-2 flex items-center">
+              <span className="text-emerald mr-2">✓</span>
               Build Network
             </h3>
             <p className="text-sm">

@@ -433,8 +433,8 @@ function GroupAdminDashboard() {
     return (
       <div className="flex items-center justify-center min-h-screen">
         <div className="text-center">
-          <div className="w-16 h-16 border-4 border-accent-primary border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-          <p className="text-gray-400">Loading dashboard...</p>
+          <div className="w-16 h-16 border-4 border-emerald border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+          <p className="text-text-muted">Loading dashboard...</p>
         </div>
       </div>
     )
@@ -443,17 +443,17 @@ function GroupAdminDashboard() {
   if (myGroups.length === 0) {
     return (
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="bg-dark-card border border-dark-border rounded-lg p-12 text-center">
+        <div className="glass rounded-2xl border border-emerald/10 p-12 text-center">
           <div className="text-6xl mb-4">🏢</div>
-          <h2 className="font-display text-2xl font-bold text-white mb-4">
+          <h2 className="font-display text-2xl font-bold text-text-primary mb-4">
             No Groups Assigned
           </h2>
-          <p className="text-gray-400 mb-6">
+          <p className="text-text-muted mb-6">
             You haven't been assigned as an admin for any groups yet. Contact the platform founder to get assigned.
           </p>
           <button
             onClick={() => navigate('/')}
-            className="bg-accent-primary hover:bg-accent-secondary text-white px-6 py-3 rounded-md font-medium"
+            className="bg-gradient-emerald shadow-button text-text-primary px-6 py-3 rounded-xl font-medium hover:-translate-y-1 transition-all"
           >
             Go to Home
           </button>
@@ -466,16 +466,16 @@ function GroupAdminDashboard() {
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       {/* Header */}
       <div className="mb-8">
-        <h1 className="font-display text-4xl font-bold text-white mb-2">
+        <h1 className="font-display text-4xl font-bold text-text-primary mb-2">
           Group Admin Dashboard
         </h1>
-        <p className="text-gray-400">
+        <p className="text-text-muted">
           Manage your groups and create activities
         </p>
       </div>
 
       {/* Tabs */}
-      <div className="flex space-x-2 mb-8 border-b border-dark-border overflow-x-auto">
+      <div className="flex space-x-2 mb-8 border-b border-emerald/10 overflow-x-auto">
         {tabs.map((tab) => (
           <button
             key={tab.id}
@@ -503,8 +503,8 @@ function GroupAdminDashboard() {
             }}
             className={`px-6 py-3 font-medium whitespace-nowrap transition-colors ${
               activeTab === tab.id
-                ? 'text-accent-primary border-b-2 border-accent-primary'
-                : 'text-gray-400 hover:text-white'
+                ? 'text-emerald border-b-2 border-emerald'
+                : 'text-text-muted hover:text-text-primary'
             }`}
           >
             <span className="mr-2">{tab.icon}</span>
@@ -518,34 +518,34 @@ function GroupAdminDashboard() {
         {/* My Groups Tab */}
         {activeTab === 'my-groups' && (
           <div>
-            <h2 className="font-display text-2xl font-bold text-white mb-6">Groups You Manage</h2>
+            <h2 className="font-display text-2xl font-bold text-text-primary mb-6">Groups You Manage</h2>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {myGroups.map((group) => (
-                <div key={group.id} className="bg-dark-card border border-dark-border rounded-lg p-6">
+                <div key={group.id} className="glass rounded-2xl border border-emerald/10 p-6">
                   <div className="flex justify-between items-start mb-4">
                     <div className="flex-1">
-                      <h3 className="font-display text-xl font-bold text-white mb-1">
+                      <h3 className="font-display text-xl font-bold text-text-primary mb-1">
                         {group.name}
                       </h3>
-                      <p className="text-sm text-gray-400 mb-3">{group.description}</p>
+                      <p className="text-sm text-text-muted mb-3">{group.description}</p>
                       <div className="flex flex-wrap gap-2">
-                        <span className="bg-accent-primary/20 text-accent-primary text-xs px-3 py-1 rounded-full">
+                        <span className="bg-emerald/15 border border-emerald/30 text-emerald text-[11px] uppercase px-3 py-1 rounded-full font-medium tracking-wide">
                           {group.category}
                         </span>
-                        <span className="bg-purple-500/20 text-purple-300 text-xs px-3 py-1 rounded-full">
+                        <span className="bg-gold/15 border border-gold/30 text-gold text-[11px] uppercase px-3 py-1 rounded-full font-medium tracking-wide">
                           {group.joining_type}
                         </span>
                       </div>
                     </div>
                   </div>
 
-                  <div className="border-t border-dark-border pt-4 mt-4 flex items-center justify-between text-sm">
-                    <span className="text-gray-400">👥 {group.member_count || 0} members</span>
+                  <div className="border-t border-emerald/10 pt-4 mt-4 flex items-center justify-between text-sm">
+                    <span className="text-text-muted">👥 {group.member_count || 0} members</span>
                     <div className="flex gap-2">
                       <button
                         onClick={() => handleEditGroup(group)}
-                        className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md text-sm font-medium"
+                        className="bg-blue-600 hover:bg-blue-700 text-text-primary px-4 py-2 rounded-lg text-sm font-medium transition-colors"
                       >
                         ✏️ Edit
                       </button>
@@ -555,7 +555,7 @@ function GroupAdminDashboard() {
                           setActivityForm(prev => ({ ...prev, group_id: group.id }))
                           setActiveTab('create-activity')
                         }}
-                        className="bg-accent-primary hover:bg-accent-secondary text-white px-4 py-2 rounded-md text-sm font-medium"
+                        className="bg-gradient-gold shadow-button-gold text-text-primary px-4 py-2 rounded-lg text-sm font-medium hover:-translate-y-1 transition-all"
                       >
                         ➕ Create Activity
                       </button>
@@ -570,22 +570,22 @@ function GroupAdminDashboard() {
         {/* Join Requests Tab */}
         {activeTab === 'join-requests' && (
           <div>
-            <h2 className="font-display text-2xl font-bold text-white mb-6">
+            <h2 className="font-display text-2xl font-bold text-text-primary mb-6">
               Join Requests for Your Groups
             </h2>
 
             {joinRequestsLoading ? (
               <div className="text-center py-12">
-                <div className="w-12 h-12 border-4 border-accent-primary border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-                <p className="text-gray-400">Loading join requests...</p>
+                <div className="w-12 h-12 border-4 border-emerald border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+                <p className="text-text-muted">Loading join requests...</p>
               </div>
             ) : joinRequests.length === 0 ? (
-              <div className="bg-dark-card border border-dark-border rounded-lg p-12 text-center">
+              <div className="glass rounded-2xl border border-emerald/10 p-12 text-center">
                 <div className="text-6xl mb-4">✅</div>
-                <h3 className="font-display text-xl font-bold text-white mb-2">
+                <h3 className="font-display text-xl font-bold text-text-primary mb-2">
                   No Pending Requests
                 </h3>
-                <p className="text-gray-400">
+                <p className="text-text-muted">
                   All join requests have been processed. New applications will appear here.
                 </p>
               </div>
@@ -594,29 +594,29 @@ function GroupAdminDashboard() {
                 {joinRequests.map((request) => (
                   <div
                     key={request.id}
-                    className="bg-dark-card border border-dark-border rounded-lg p-6"
+                    className="glass rounded-2xl border border-emerald/10 p-6"
                   >
                     <div className="flex items-start justify-between mb-4">
                       <div className="flex items-start space-x-4 flex-1">
                         {/* User Avatar */}
-                        <div className="w-12 h-12 bg-gradient-to-br from-accent-primary to-accent-secondary rounded-full flex items-center justify-center text-white font-bold text-lg flex-shrink-0">
+                        <div className="w-12 h-12 bg-gradient-brand rounded-full flex items-center justify-center text-text-primary font-bold text-lg flex-shrink-0">
                           {request.user?.name?.charAt(0).toUpperCase() || '?'}
                         </div>
 
                         {/* User Info */}
                         <div className="flex-1">
                           <div className="flex items-center gap-2 mb-1">
-                            <h3 className="font-bold text-white text-lg">
+                            <h3 className="font-bold text-text-primary text-lg">
                               {request.user?.name || 'Unknown User'}
                             </h3>
-                            <span className="text-sm text-gray-400">
+                            <span className="text-sm text-text-muted">
                               • {request.user?.email}
                             </span>
                           </div>
 
-                          <div className="flex items-center gap-2 text-sm text-gray-400 mb-3">
+                          <div className="flex items-center gap-2 text-sm text-text-muted mb-3">
                             <span>Applied to:</span>
-                            <span className="text-accent-primary font-medium">
+                            <span className="text-emerald font-medium">
                               {request.group?.name}
                             </span>
                             <span>•</span>
@@ -633,17 +633,17 @@ function GroupAdminDashboard() {
 
                           {/* Application Data */}
                           {request.application_data && (
-                            <div className="bg-dark-bg border border-dark-border rounded-lg p-4 space-y-3">
-                              <h4 className="font-semibold text-white text-sm mb-2">
+                            <div className="bg-dark-bg border border-emerald/20 rounded-xl p-4 space-y-3">
+                              <h4 className="font-semibold text-text-primary text-sm mb-2">
                                 📝 Application Details
                               </h4>
 
                               {request.application_data.reason && (
                                 <div>
-                                  <p className="text-xs text-gray-400 mb-1">
+                                  <p className="text-xs text-text-muted mb-1">
                                     Why they want to join:
                                   </p>
-                                  <p className="text-sm text-gray-300">
+                                  <p className="text-sm text-text-secondary">
                                     {request.application_data.reason}
                                   </p>
                                 </div>
@@ -651,10 +651,10 @@ function GroupAdminDashboard() {
 
                               {request.application_data.experience && (
                                 <div>
-                                  <p className="text-xs text-gray-400 mb-1">
+                                  <p className="text-xs text-text-muted mb-1">
                                     Their experience:
                                   </p>
-                                  <p className="text-sm text-gray-300">
+                                  <p className="text-sm text-text-secondary">
                                     {request.application_data.experience}
                                   </p>
                                 </div>
@@ -665,10 +665,10 @@ function GroupAdminDashboard() {
                                 .filter(([key]) => key !== 'reason' && key !== 'experience')
                                 .map(([key, value]) => (
                                   <div key={key}>
-                                    <p className="text-xs text-gray-400 mb-1 capitalize">
+                                    <p className="text-xs text-text-muted mb-1 capitalize">
                                       {key.replace(/_/g, ' ')}:
                                     </p>
-                                    <p className="text-sm text-gray-300">{value}</p>
+                                    <p className="text-sm text-text-secondary">{value}</p>
                                   </div>
                                 ))}
                             </div>
@@ -678,14 +678,14 @@ function GroupAdminDashboard() {
                     </div>
 
                     {/* Action Buttons */}
-                    <div className="flex gap-3 mt-4 pt-4 border-t border-dark-border">
+                    <div className="flex gap-3 mt-4 pt-4 border-t border-emerald/10">
                       <button
                         onClick={() => handleApproveRequest(request.id)}
                         disabled={processingRequest === request.id}
-                        className={`flex-1 py-3 rounded-lg font-medium transition-colors ${
+                        className={`flex-1 py-3 rounded-xl font-medium transition-all ${
                           processingRequest === request.id
                             ? 'bg-gray-600 text-gray-400 cursor-not-allowed'
-                            : 'bg-green-600 hover:bg-green-700 text-white'
+                            : 'bg-gradient-emerald shadow-button text-text-primary hover:-translate-y-1'
                         }`}
                       >
                         {processingRequest === request.id ? 'Processing...' : '✓ Approve'}
@@ -693,10 +693,10 @@ function GroupAdminDashboard() {
                       <button
                         onClick={() => handleRejectRequest(request.id)}
                         disabled={processingRequest === request.id}
-                        className={`flex-1 py-3 rounded-lg font-medium transition-colors ${
+                        className={`flex-1 py-3 rounded-xl font-medium transition-all ${
                           processingRequest === request.id
                             ? 'bg-gray-600 text-gray-400 cursor-not-allowed'
-                            : 'bg-red-600 hover:bg-red-700 text-white'
+                            : 'bg-red-600 hover:bg-red-700 text-text-primary'
                         }`}
                       >
                         {processingRequest === request.id ? 'Processing...' : '✗ Reject'}
@@ -839,11 +839,11 @@ function GroupAdminDashboard() {
         {/* Create/Edit Activity Tab */}
         {activeTab === 'create-activity' && (
           <div className="max-w-2xl">
-            <h2 className="font-display text-2xl font-bold text-white mb-6">
+            <h2 className="font-display text-2xl font-bold text-text-primary mb-6">
               {editingActivity ? 'Edit Activity' : 'Create New Activity'}
             </h2>
 
-            <form onSubmit={editingActivity ? handleUpdateActivity : handleCreateActivity} className="bg-dark-card border border-dark-border rounded-lg p-6 space-y-6">
+            <form onSubmit={editingActivity ? handleUpdateActivity : handleCreateActivity} className="glass rounded-2xl border border-emerald/10 p-6 space-y-6">
               {/* Select Group */}
               <div>
                 <label className="block text-sm font-medium text-gray-300 mb-2">
@@ -1025,7 +1025,7 @@ function GroupAdminDashboard() {
                 <button
                   type="submit"
                   disabled={createActivityLoading}
-                  className="flex-1 bg-accent-primary hover:bg-accent-secondary text-white font-medium py-3 rounded-md disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="flex-1 bg-gradient-gold shadow-button-gold text-text-primary font-medium py-3 rounded-xl hover:-translate-y-1 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   {createActivityLoading
                     ? (editingActivity ? 'Updating...' : 'Creating...')
@@ -1065,15 +1065,15 @@ function GroupAdminDashboard() {
         {/* My Activities Tab */}
         {activeTab === 'my-activities' && (
           <div>
-            <h2 className="font-display text-2xl font-bold text-white mb-6">Activities You Created</h2>
+            <h2 className="font-display text-2xl font-bold text-text-primary mb-6">Activities You Created</h2>
 
             {myActivities.length === 0 ? (
-              <div className="bg-dark-card border border-dark-border rounded-lg p-12 text-center">
+              <div className="glass rounded-2xl border border-emerald/10 p-12 text-center">
                 <div className="text-6xl mb-4">📅</div>
-                <p className="text-gray-400 mb-4">No activities created yet</p>
+                <p className="text-text-muted mb-4">No activities created yet</p>
                 <button
                   onClick={() => setActiveTab('create-activity')}
-                  className="bg-accent-primary hover:bg-accent-secondary text-white px-6 py-2 rounded-md font-medium"
+                  className="bg-gradient-gold shadow-button-gold text-text-primary px-6 py-2 rounded-xl font-medium hover:-translate-y-1 transition-all"
                 >
                   Create Your First Activity
                 </button>
@@ -1081,31 +1081,31 @@ function GroupAdminDashboard() {
             ) : (
               <div className="space-y-4">
                 {myActivities.map((activity) => (
-                  <div key={activity.id} className="bg-dark-card border border-dark-border rounded-lg p-6">
+                  <div key={activity.id} className="glass rounded-2xl border border-emerald/10 p-6">
                     <div className="flex justify-between items-start mb-4">
                       <div className="flex-1">
-                        <h3 className="text-xl font-bold text-white mb-1">{activity.title}</h3>
-                        <p className="text-sm text-gray-400 mb-2">{activity.group?.name}</p>
+                        <h3 className="text-xl font-bold text-text-primary mb-1">{activity.title}</h3>
+                        <p className="text-sm text-text-muted mb-2">{activity.group?.name}</p>
                         <div className="flex flex-wrap gap-2 mb-3">
-                          <span className="text-gray-300 text-sm">📍 {activity.place}</span>
-                          <span className="text-gray-300 text-sm">📅 {new Date(activity.date).toLocaleDateString()}</span>
-                          <span className="text-gray-300 text-sm">🕐 {activity.start_time} - {activity.end_time}</span>
+                          <span className="text-text-secondary text-sm">📍 {activity.place}</span>
+                          <span className="text-text-secondary text-sm">📅 {new Date(activity.date).toLocaleDateString()}</span>
+                          <span className="text-text-secondary text-sm">🕐 {activity.start_time} - {activity.end_time}</span>
                         </div>
                         <div className="flex gap-2">
-                          <span className={`text-xs px-3 py-1 rounded-full ${
+                          <span className={`text-[11px] uppercase px-3 py-1 rounded-full font-medium tracking-wide ${
                             activity.type === 'public'
-                              ? 'bg-green-500/20 text-green-400'
+                              ? 'bg-emerald/15 border border-emerald/30 text-emerald'
                               : activity.type === 'private'
-                              ? 'bg-purple-500/20 text-purple-300'
-                              : 'bg-blue-500/20 text-blue-400'
+                              ? 'bg-emerald/15 border border-emerald/30 text-emerald'
+                              : 'bg-gold/15 border border-gold/30 text-gold'
                           }`}>
                             {activity.type === 'invite_only' ? 'Invite-Only' : activity.type}
                           </span>
-                          <span className="text-xs px-3 py-1 rounded-full bg-accent-primary/20 text-accent-primary">
+                          <span className="text-[11px] uppercase px-3 py-1 rounded-full bg-gold/15 border border-gold/30 text-gold font-medium tracking-wide">
                             💰 {activity.payment}
                           </span>
                           {activity.invite_code && (
-                            <span className="text-xs px-3 py-1 rounded-full bg-blue-500/20 text-blue-400">
+                            <span className="text-xs px-3 py-1 rounded-full bg-gold/15 border border-gold/30 text-gold">
                               🔑 Code: {activity.invite_code}
                             </span>
                           )}
@@ -1114,13 +1114,13 @@ function GroupAdminDashboard() {
                       <div className="flex gap-2 ml-4">
                         <button
                           onClick={() => handleEditActivity(activity)}
-                          className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md text-sm font-medium"
+                          className="bg-blue-600 hover:bg-blue-700 text-text-primary px-4 py-2 rounded-lg text-sm font-medium transition-colors"
                         >
                           ✏️ Edit
                         </button>
                         <button
                           onClick={() => handleDeleteActivity(activity.id)}
-                          className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-md text-sm font-medium"
+                          className="bg-red-600 hover:bg-red-700 text-text-primary px-4 py-2 rounded-lg text-sm font-medium transition-colors"
                         >
                           🗑️ Delete
                         </button>
@@ -1128,19 +1128,19 @@ function GroupAdminDashboard() {
                     </div>
 
                     {activity.description && (
-                      <p className="text-gray-400 text-sm border-t border-dark-border pt-4">
+                      <p className="text-text-muted text-sm border-t border-emerald/10 pt-4">
                         {activity.description}
                       </p>
                     )}
 
-                    <div className="border-t border-dark-border pt-4 mt-4 flex items-center justify-between text-sm">
-                      <span className="text-gray-400">
+                    <div className="border-t border-emerald/10 pt-4 mt-4 flex items-center justify-between text-sm">
+                      <span className="text-text-muted">
                         👥 {activity.current_participants || 0} joined
                         {activity.participant_limit && ` / ${activity.participant_limit} max`}
                       </span>
                       <button
                         onClick={() => navigate(`/activity/${activity.id}`)}
-                        className="text-accent-primary hover:text-accent-secondary font-medium"
+                        className="text-emerald hover:text-gold font-medium transition-colors"
                       >
                         View Details →
                       </button>

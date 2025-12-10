@@ -288,7 +288,7 @@ function GroupDetail() {
         text: '✓ Member - Click to Leave',
         disabled: isJoining,
         onClick: handleLeaveGroup,
-        className: 'bg-green-600 hover:bg-red-600'
+        className: 'bg-gradient-emerald shadow-button hover:bg-red-600'
       }
     }
 
@@ -297,7 +297,7 @@ function GroupDetail() {
         text: '⏳ Application Pending',
         disabled: true,
         onClick: null,
-        className: 'bg-yellow-600 cursor-not-allowed'
+        className: 'bg-gold/20 border border-gold/30 cursor-not-allowed'
       }
     }
 
@@ -321,7 +321,7 @@ function GroupDetail() {
       text: isJoining ? 'Processing...' : joinText[group.joining_type],
       disabled: isJoining,
       onClick: handleJoinGroup,
-      className: 'bg-accent-primary hover:bg-accent-secondary'
+      className: 'bg-gradient-emerald shadow-button'
     }
   }
 
@@ -329,8 +329,8 @@ function GroupDetail() {
     return (
       <div className="flex items-center justify-center min-h-screen">
         <div className="text-center">
-          <div className="w-16 h-16 border-4 border-accent-primary border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-          <p className="text-gray-400">Loading group details...</p>
+          <div className="w-16 h-16 border-4 border-emerald border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+          <p className="text-text-muted">Loading group details...</p>
         </div>
       </div>
     )
@@ -341,10 +341,10 @@ function GroupDetail() {
       <div className="flex items-center justify-center min-h-screen">
         <div className="text-center">
           <div className="text-6xl mb-4">😕</div>
-          <h2 className="text-2xl font-display font-bold text-white mb-4">Group Not Found</h2>
+          <h2 className="text-2xl font-display font-bold text-text-primary mb-4">Group Not Found</h2>
           <button
             onClick={() => navigate('/groups')}
-            className="bg-accent-primary hover:bg-accent-secondary text-white px-6 py-3 rounded-md font-medium"
+            className="bg-gradient-emerald shadow-button text-text-primary px-6 py-3 rounded-lg font-medium hover:-translate-y-1 transition-all"
           >
             Back to Groups
           </button>
@@ -360,18 +360,18 @@ function GroupDetail() {
       {/* Back Button */}
       <button
         onClick={() => navigate('/groups')}
-        className="flex items-center space-x-2 text-gray-400 hover:text-white mb-6"
+        className="flex items-center space-x-2 text-text-muted hover:text-text-primary mb-6 transition-colors"
       >
         <span>←</span>
         <span>Back to Groups</span>
       </button>
 
       {/* Header Section */}
-      <div className="bg-dark-card border border-dark-border rounded-lg p-8 mb-6">
+      <div className="glass rounded-2xl border border-emerald/10 p-8 mb-6">
         {/* Group Icon */}
         <div className="flex items-start justify-between mb-6">
           <div className="flex items-center space-x-4">
-            <div className="w-20 h-20 bg-gradient-to-br from-accent-primary/20 to-accent-secondary/20 rounded-lg flex items-center justify-center text-4xl">
+            <div className="w-20 h-20 bg-gradient-brand rounded-2xl flex items-center justify-center text-4xl">
               {group.category?.includes('Badminton') && '🏸'}
               {group.category?.includes('Fitness') && '💪'}
               {group.category?.includes('Football') && '⚽'}
@@ -381,10 +381,10 @@ function GroupDetail() {
               {!group.category && '👥'}
             </div>
             <div>
-              <h1 className="font-display text-4xl font-bold text-white mb-2">
+              <h1 className="font-display text-4xl font-bold text-text-primary mb-2">
                 {group.name}
               </h1>
-              <span className="inline-block bg-accent-primary/20 text-accent-primary px-4 py-1 rounded-full text-sm font-medium">
+              <span className="inline-block bg-emerald/15 border border-emerald/30 text-emerald px-4 py-1 rounded-full text-[11px] uppercase font-medium tracking-wide">
                 {group.category || 'Community'}
               </span>
             </div>
@@ -393,17 +393,17 @@ function GroupDetail() {
           {/* Joining Type Badge */}
           <div>
             {group.joining_type === 'public' && (
-              <span className="bg-green-500/20 text-green-300 px-4 py-2 rounded-full text-sm font-medium">
+              <span className="bg-emerald/15 border border-emerald/30 text-emerald px-4 py-2 rounded-full text-sm font-medium">
                 🌍 Public
               </span>
             )}
             {group.joining_type === 'invite_only' && (
-              <span className="bg-blue-500/20 text-blue-300 px-4 py-2 rounded-full text-sm font-medium">
+              <span className="bg-gold/15 border border-gold/30 text-gold px-4 py-2 rounded-full text-sm font-medium">
                 🎫 Invite-Only
               </span>
             )}
             {group.joining_type === 'screening' && (
-              <span className="bg-yellow-500/20 text-yellow-300 px-4 py-2 rounded-full text-sm font-medium">
+              <span className="bg-gold/15 border border-gold/30 text-gold px-4 py-2 rounded-full text-sm font-medium">
                 📋 Screening
               </span>
             )}
@@ -412,19 +412,19 @@ function GroupDetail() {
 
         {/* Stats */}
         <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mb-6">
-          <div className="bg-dark-bg rounded-lg p-4">
-            <div className="text-accent-primary text-sm font-semibold mb-1">👥 MEMBERS</div>
-            <div className="text-white font-bold text-2xl">{group.member_count || 0}</div>
+          <div className="bg-dark-bg rounded-xl p-4">
+            <div className="text-emerald text-[11px] uppercase font-semibold mb-1 tracking-wide">👥 MEMBERS</div>
+            <div className="text-text-primary font-bold text-2xl">{group.member_count || 0}</div>
           </div>
-          <div className="bg-dark-bg rounded-lg p-4">
-            <div className="text-accent-primary text-sm font-semibold mb-1">📅 CREATED</div>
-            <div className="text-white font-bold text-lg">
+          <div className="bg-dark-bg rounded-xl p-4">
+            <div className="text-emerald text-[11px] uppercase font-semibold mb-1 tracking-wide">📅 CREATED</div>
+            <div className="text-text-primary font-bold text-lg">
               {new Date(group.created_at).toLocaleDateString('en-IN', { month: 'short', year: 'numeric' })}
             </div>
           </div>
-          <div className="bg-dark-bg rounded-lg p-4">
-            <div className="text-accent-primary text-sm font-semibold mb-1">🔓 ACCESS</div>
-            <div className="text-white font-bold text-lg capitalize">
+          <div className="bg-dark-bg rounded-xl p-4">
+            <div className="text-emerald text-[11px] uppercase font-semibold mb-1 tracking-wide">🔓 ACCESS</div>
+            <div className="text-text-primary font-bold text-lg capitalize">
               {group.joining_type?.replace('_', ' ')}
             </div>
           </div>
@@ -434,9 +434,9 @@ function GroupDetail() {
         <button
           onClick={buttonConfig.onClick}
           disabled={buttonConfig.disabled}
-          className={`w-full py-4 rounded-lg font-bold text-lg text-white transition-colors ${
+          className={`w-full py-4 rounded-xl font-bold text-lg text-text-primary transition-all ${
             buttonConfig.className || 'bg-gray-600 cursor-not-allowed'
-          }`}
+          } ${!buttonConfig.disabled ? 'hover:-translate-y-1' : ''}`}
         >
           {buttonConfig.text}
         </button>
@@ -444,21 +444,21 @@ function GroupDetail() {
 
       {/* Description */}
       {group.description && (
-        <div className="bg-dark-card border border-dark-border rounded-lg p-6 mb-6">
-          <h2 className="font-display text-xl font-bold text-white mb-4">About This Group</h2>
-          <p className="text-gray-300 leading-relaxed">{group.description}</p>
+        <div className="glass rounded-2xl border border-emerald/10 p-6 mb-6">
+          <h2 className="font-display text-xl font-bold text-text-primary mb-4">About This Group</h2>
+          <p className="text-text-secondary leading-relaxed">{group.description}</p>
         </div>
       )}
 
       {/* Activities Section */}
-      <div className="bg-dark-card border border-dark-border rounded-lg p-6">
+      <div className="glass rounded-2xl border border-emerald/10 p-6">
         <div className="flex items-center justify-between mb-6">
-          <h2 className="font-display text-2xl font-bold text-white">
+          <h2 className="font-display text-2xl font-bold text-text-primary">
             {group.joining_type === 'public' ? 'Upcoming Activities' : 'Group Activities'}
           </h2>
           <button
             onClick={() => setShowDateFilter(!showDateFilter)}
-            className="flex items-center space-x-2 bg-accent-primary hover:bg-accent-secondary text-white px-4 py-2 rounded-lg font-medium transition-colors"
+            className="flex items-center space-x-2 bg-gradient-emerald shadow-button text-text-primary px-4 py-2 rounded-lg font-medium hover:-translate-y-1 transition-all"
           >
             <span>📅</span>
             <span>{showDateFilter ? 'Hide Filter' : 'Filter by Date'}</span>
@@ -467,21 +467,21 @@ function GroupDetail() {
 
         {/* Date Filter */}
         {showDateFilter && (
-          <div className="bg-dark-bg border border-dark-border rounded-lg p-4 mb-6">
+          <div className="bg-dark-card border border-emerald/20 rounded-xl p-4 mb-6">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
-                <label className="block text-sm font-medium text-gray-300 mb-2">
+                <label className="block text-sm font-medium text-text-secondary mb-2">
                   Start Date
                 </label>
                 <input
                   type="date"
                   value={dateFilter.startDate}
                   onChange={(e) => setDateFilter({ ...dateFilter, startDate: e.target.value })}
-                  className="w-full bg-dark-card border border-dark-border text-white px-4 py-2 rounded-lg focus:outline-none focus:border-accent-primary"
+                  className="w-full bg-dark-card border border-emerald/20 text-text-primary px-4 py-2 rounded-lg focus:outline-none focus:border-emerald transition-colors"
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-300 mb-2">
+                <label className="block text-sm font-medium text-text-secondary mb-2">
                   End Date (Optional)
                 </label>
                 <input
@@ -489,7 +489,7 @@ function GroupDetail() {
                   value={dateFilter.endDate}
                   onChange={(e) => setDateFilter({ ...dateFilter, endDate: e.target.value })}
                   min={dateFilter.startDate}
-                  className="w-full bg-dark-card border border-dark-border text-white px-4 py-2 rounded-lg focus:outline-none focus:border-accent-primary"
+                  className="w-full bg-dark-card border border-emerald/20 text-text-primary px-4 py-2 rounded-lg focus:outline-none focus:border-emerald transition-colors"
                   placeholder="Leave empty for all future"
                 />
               </div>
@@ -502,7 +502,7 @@ function GroupDetail() {
                     endDate: ''
                   })
                 }}
-                className="text-sm text-accent-primary hover:text-accent-secondary font-medium"
+                className="text-sm text-emerald hover:text-gold font-medium transition-colors"
               >
                 Reset to Today
               </button>
@@ -512,17 +512,17 @@ function GroupDetail() {
 
         {/* Privacy Notice for Non-Members */}
         {group.joining_type !== 'public' && membershipStatus !== 'approved' && (
-          <div className="bg-yellow-500/10 border border-yellow-500/30 rounded-lg p-6 text-center">
+          <div className="bg-gold/10 border border-gold/30 rounded-xl p-6 text-center">
             <div className="text-4xl mb-3">🔒</div>
-            <h3 className="font-display text-lg font-bold text-yellow-300 mb-2">
+            <h3 className="font-display text-lg font-bold text-gold mb-2">
               Members Only Activities
             </h3>
-            <p className="text-gray-300 mb-4">
+            <p className="text-text-secondary mb-4">
               Join this group to view and participate in exclusive activities.
             </p>
             <button
               onClick={handleJoinGroup}
-              className="bg-accent-primary hover:bg-accent-secondary text-white px-6 py-2 rounded-lg font-medium"
+              className="bg-gradient-emerald shadow-button text-text-primary px-6 py-2 rounded-lg font-medium hover:-translate-y-1 transition-all"
             >
               {group.joining_type === 'invite_only' ? '🎫 Join with Invite Code' : '📋 Apply to Join'}
             </button>
@@ -532,8 +532,8 @@ function GroupDetail() {
         {/* Activities Loading */}
         {activitiesLoading && (
           <div className="text-center py-12">
-            <div className="w-12 h-12 border-4 border-accent-primary border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-            <p className="text-gray-400">Loading activities...</p>
+            <div className="w-12 h-12 border-4 border-emerald border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+            <p className="text-text-muted">Loading activities...</p>
           </div>
         )}
 
@@ -543,10 +543,10 @@ function GroupDetail() {
             {activities.length === 0 ? (
               <div className="text-center py-12">
                 <div className="text-6xl mb-4">📅</div>
-                <h3 className="font-display text-xl font-bold text-white mb-2">
+                <h3 className="font-display text-xl font-bold text-text-primary mb-2">
                   No Activities Scheduled
                 </h3>
-                <p className="text-gray-400">
+                <p className="text-text-muted">
                   {dateFilter.endDate
                     ? 'No activities found in the selected date range.'
                     : 'No upcoming activities at the moment. Check back later!'}
@@ -558,30 +558,30 @@ function GroupDetail() {
                   <div
                     key={activity.id}
                     onClick={() => navigate(`/activity/${activity.id}`)}
-                    className="bg-dark-bg border border-dark-border rounded-lg p-6 hover:border-accent-primary hover:shadow-lg hover:shadow-accent-primary/10 cursor-pointer transition-all group"
+                    className="bg-dark-bg border border-emerald/10 rounded-2xl p-6 hover:border-emerald hover:shadow-lg hover:shadow-emerald/10 cursor-pointer transition-all group"
                   >
                     <div className="flex items-start justify-between mb-4">
                       <div className="flex-1">
-                        <h3 className="font-display text-xl font-bold text-white mb-2 group-hover:text-accent-primary transition-colors">
+                        <h3 className="font-display text-xl font-bold text-text-primary mb-2 group-hover:text-emerald transition-colors">
                           {activity.title}
                         </h3>
-                        <p className="text-gray-400 text-sm mb-3 line-clamp-2">
+                        <p className="text-text-muted text-sm mb-3 line-clamp-2">
                           {activity.description}
                         </p>
                       </div>
                       <div className="ml-4">
                         {activity.type === 'public' && (
-                          <span className="bg-green-500/20 text-green-400 text-xs px-3 py-1 rounded-full">
+                          <span className="bg-emerald/15 border border-emerald/30 text-emerald text-[11px] uppercase px-3 py-1 rounded-full font-medium tracking-wide">
                             🌍 Public
                           </span>
                         )}
                         {activity.type === 'private' && (
-                          <span className="bg-purple-500/20 text-purple-300 text-xs px-3 py-1 rounded-full">
+                          <span className="bg-emerald/15 border border-emerald/30 text-emerald text-[11px] uppercase px-3 py-1 rounded-full font-medium tracking-wide">
                             🔒 Private
                           </span>
                         )}
                         {activity.type === 'invite_only' && (
-                          <span className="bg-blue-500/20 text-blue-400 text-xs px-3 py-1 rounded-full">
+                          <span className="bg-gold/15 border border-gold/30 text-gold text-[11px] uppercase px-3 py-1 rounded-full font-medium tracking-wide">
                             🎫 Invite-Only
                           </span>
                         )}
@@ -590,8 +590,8 @@ function GroupDetail() {
 
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-4">
                       <div className="flex items-center space-x-2 text-sm">
-                        <span className="text-accent-primary">📅</span>
-                        <span className="text-gray-300">
+                        <span className="text-emerald">📅</span>
+                        <span className="text-text-secondary">
                           {new Date(activity.date).toLocaleDateString('en-IN', {
                             day: 'numeric',
                             month: 'short',
@@ -600,29 +600,29 @@ function GroupDetail() {
                         </span>
                       </div>
                       <div className="flex items-center space-x-2 text-sm">
-                        <span className="text-accent-primary">🕐</span>
-                        <span className="text-gray-300">
+                        <span className="text-emerald">🕐</span>
+                        <span className="text-text-secondary">
                           {activity.start_time} - {activity.end_time}
                         </span>
                       </div>
                       <div className="flex items-center space-x-2 text-sm">
-                        <span className="text-accent-primary">📍</span>
-                        <span className="text-gray-300 truncate">{activity.place}</span>
+                        <span className="text-emerald">📍</span>
+                        <span className="text-text-secondary truncate">{activity.place}</span>
                       </div>
                       <div className="flex items-center space-x-2 text-sm">
-                        <span className="text-accent-primary">💰</span>
-                        <span className="text-gray-300">{activity.payment}</span>
+                        <span className="text-emerald">💰</span>
+                        <span className="text-text-secondary">{activity.payment}</span>
                       </div>
                     </div>
 
-                    <div className="flex items-center justify-between pt-4 border-t border-dark-border">
-                      <div className="flex items-center space-x-4 text-sm text-gray-400">
+                    <div className="flex items-center justify-between pt-4 border-t border-emerald/10">
+                      <div className="flex items-center space-x-4 text-sm text-text-muted">
                         <span>
                           👥 {activity.current_participants || 0}
                           {activity.participant_limit && ` / ${activity.participant_limit}`} joined
                         </span>
                       </div>
-                      <button className="text-accent-primary hover:text-accent-secondary font-medium text-sm group-hover:translate-x-1 transition-transform">
+                      <button className="text-emerald hover:text-gold font-medium text-sm group-hover:translate-x-1 transition-transform">
                         View Details →
                       </button>
                     </div>
@@ -637,10 +637,10 @@ function GroupDetail() {
       {/* Invite Code Modal */}
       {showInviteCodeModal && (
         <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4">
-          <div className="bg-dark-card border border-dark-border rounded-lg p-6 max-w-md w-full">
-            <h3 className="font-display text-xl font-bold text-white mb-4">🎫 Enter Invite Code</h3>
+          <div className="glass rounded-2xl border border-emerald/10 p-6 max-w-md w-full">
+            <h3 className="font-display text-xl font-bold text-text-primary mb-4">🎫 Enter Invite Code</h3>
 
-            <p className="text-gray-400 mb-4">
+            <p className="text-text-muted mb-4">
               This is an invite-only group. Please enter the invite code you received from the group admin.
             </p>
 
@@ -649,7 +649,7 @@ function GroupDetail() {
               value={inviteCodeInput}
               onChange={(e) => setInviteCodeInput(e.target.value.toUpperCase())}
               placeholder="Enter invite code"
-              className="w-full bg-dark-bg border border-dark-border text-white px-4 py-3 rounded-lg mb-4 focus:outline-none focus:border-accent-primary uppercase tracking-wider text-center text-lg font-mono"
+              className="w-full bg-dark-card border border-emerald/20 text-text-primary px-4 py-3 rounded-lg mb-4 focus:outline-none focus:border-emerald uppercase tracking-wider text-center text-lg font-mono transition-colors"
               maxLength={8}
               autoFocus
             />
@@ -660,17 +660,17 @@ function GroupDetail() {
                   setShowInviteCodeModal(false)
                   setInviteCodeInput('')
                 }}
-                className="flex-1 bg-dark-hover hover:bg-dark-border text-white py-3 rounded-lg font-medium"
+                className="flex-1 bg-dark-hover hover:bg-dark-border text-text-primary py-3 rounded-lg font-medium transition-colors"
               >
                 Cancel
               </button>
               <button
                 onClick={handleInviteCodeSubmit}
                 disabled={isJoining || !inviteCodeInput.trim()}
-                className={`flex-1 py-3 rounded-lg font-medium ${
+                className={`flex-1 py-3 rounded-lg font-medium transition-all ${
                   isJoining || !inviteCodeInput.trim()
                     ? 'bg-gray-600 text-gray-400 cursor-not-allowed'
-                    : 'bg-accent-primary hover:bg-accent-secondary text-white'
+                    : 'bg-gradient-emerald shadow-button text-text-primary hover:-translate-y-1'
                 }`}
               >
                 {isJoining ? 'Joining...' : 'Join Group'}
@@ -683,37 +683,37 @@ function GroupDetail() {
       {/* Screening Modal */}
       {showScreeningModal && (
         <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4 overflow-y-auto">
-          <div className="bg-dark-card border border-dark-border rounded-lg p-6 max-w-md w-full my-8">
-            <h3 className="font-display text-xl font-bold text-white mb-4">📋 Application Form</h3>
+          <div className="glass rounded-2xl border border-emerald/10 p-6 max-w-md w-full my-8">
+            <h3 className="font-display text-xl font-bold text-text-primary mb-4">📋 Application Form</h3>
 
-            <p className="text-gray-400 mb-6">
+            <p className="text-text-muted mb-6">
               Please fill out this form to apply to join this group. The group admin will review your application.
             </p>
 
             <form onSubmit={handleScreeningSubmit} className="space-y-4">
               {/* Default questions */}
               <div>
-                <label className="block text-sm font-medium text-gray-300 mb-2">
+                <label className="block text-sm font-medium text-text-secondary mb-2">
                   Why do you want to join this group? *
                 </label>
                 <textarea
                   name="reason"
                   required
                   rows="3"
-                  className="w-full bg-dark-bg border border-dark-border text-white px-4 py-2 rounded-lg focus:outline-none focus:border-accent-primary resize-none"
+                  className="w-full bg-dark-card border border-emerald/20 text-text-primary px-4 py-2 rounded-lg focus:outline-none focus:border-emerald resize-none transition-colors"
                   placeholder="Tell us why you're interested..."
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-300 mb-2">
+                <label className="block text-sm font-medium text-text-secondary mb-2">
                   Tell us about your experience *
                 </label>
                 <textarea
                   name="experience"
                   required
                   rows="3"
-                  className="w-full bg-dark-bg border border-dark-border text-white px-4 py-2 rounded-lg focus:outline-none focus:border-accent-primary resize-none"
+                  className="w-full bg-dark-card border border-emerald/20 text-text-primary px-4 py-2 rounded-lg focus:outline-none focus:border-emerald resize-none transition-colors"
                   placeholder="Your experience with this activity..."
                 />
               </div>
@@ -722,13 +722,13 @@ function GroupDetail() {
               {screeningForm && Object.keys(screeningForm).length > 0 && (
                 Object.entries(screeningForm).map(([key, question]) => (
                   <div key={key}>
-                    <label className="block text-sm font-medium text-gray-300 mb-2">
+                    <label className="block text-sm font-medium text-text-secondary mb-2">
                       {question}
                     </label>
                     <input
                       type="text"
                       name={key}
-                      className="w-full bg-dark-bg border border-dark-border text-white px-4 py-2 rounded-lg focus:outline-none focus:border-accent-primary"
+                      className="w-full bg-dark-card border border-emerald/20 text-text-primary px-4 py-2 rounded-lg focus:outline-none focus:border-emerald transition-colors"
                     />
                   </div>
                 ))
@@ -738,17 +738,17 @@ function GroupDetail() {
                 <button
                   type="button"
                   onClick={() => setShowScreeningModal(false)}
-                  className="flex-1 bg-dark-hover hover:bg-dark-border text-white py-3 rounded-lg font-medium"
+                  className="flex-1 bg-dark-hover hover:bg-dark-border text-text-primary py-3 rounded-lg font-medium transition-colors"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
                   disabled={isJoining}
-                  className={`flex-1 py-3 rounded-lg font-medium ${
+                  className={`flex-1 py-3 rounded-lg font-medium transition-all ${
                     isJoining
                       ? 'bg-gray-600 text-gray-400 cursor-not-allowed'
-                      : 'bg-accent-primary hover:bg-accent-secondary text-white'
+                      : 'bg-gradient-emerald shadow-button text-text-primary hover:-translate-y-1'
                   }`}
                 >
                   {isJoining ? 'Submitting...' : 'Submit Application'}
@@ -761,11 +761,11 @@ function GroupDetail() {
 
       {/* Sign In Prompt */}
       {!user && (
-        <div className="bg-gradient-to-r from-accent-primary/10 to-accent-secondary/10 border border-accent-primary/30 rounded-lg p-6">
-          <h3 className="font-display text-lg font-bold text-white mb-2">
+        <div className="bg-gradient-emerald/10 border border-emerald/30 rounded-2xl p-6">
+          <h3 className="font-display text-lg font-bold text-text-primary mb-2">
             Need to sign in
           </h3>
-          <p className="text-gray-300 text-sm">
+          <p className="text-text-secondary text-sm">
             Create an account or sign in to join this group and access exclusive activities.
           </p>
         </div>

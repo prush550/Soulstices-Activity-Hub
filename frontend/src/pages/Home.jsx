@@ -67,8 +67,8 @@ function Home() {
     return (
       <div className="flex items-center justify-center min-h-screen">
         <div className="text-center">
-          <div className="w-16 h-16 border-4 border-accent-primary border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-          <p className="text-gray-400">Loading activities...</p>
+          <div className="w-16 h-16 border-4 border-emerald border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+          <p className="text-text-secondary">Loading activities...</p>
         </div>
       </div>
     )
@@ -77,11 +77,11 @@ function Home() {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       {/* Hero Section */}
-      <div className="text-center mb-12">
-        <h1 className="font-display text-5xl md:text-6xl font-bold text-white mb-4 bg-gradient-to-r from-accent-primary to-accent-secondary bg-clip-text text-transparent">
+      <div className="text-center mb-12 fade-in-up">
+        <h1 className="font-display text-5xl md:text-7xl font-bold mb-4 text-gradient leading-tight">
           What can I do today evening?
         </h1>
-        <p className="text-xl text-gray-400 max-w-2xl mx-auto">
+        <p className="text-xl text-text-secondary max-w-2xl mx-auto">
           Discover sports and leisure activities happening in Bhopal right now
         </p>
       </div>
@@ -90,30 +90,30 @@ function Home() {
       <div className="flex justify-center space-x-4 mb-8">
         <button
           onClick={() => setFilter('today')}
-          className={`px-6 py-3 rounded-lg font-medium ${
+          className={`px-6 py-3 rounded-lg font-medium transition-all ${
             filter === 'today'
-              ? 'bg-accent-primary text-white'
-              : 'bg-dark-card text-gray-400 hover:text-white hover:bg-dark-hover'
+              ? 'bg-gradient-emerald text-text-primary shadow-button'
+              : 'glass text-text-secondary hover:text-text-primary hover:bg-dark-card-hover'
           }`}
         >
           Today
         </button>
         <button
           onClick={() => setFilter('week')}
-          className={`px-6 py-3 rounded-lg font-medium ${
+          className={`px-6 py-3 rounded-lg font-medium transition-all ${
             filter === 'week'
-              ? 'bg-accent-primary text-white'
-              : 'bg-dark-card text-gray-400 hover:text-white hover:bg-dark-hover'
+              ? 'bg-gradient-emerald text-text-primary shadow-button'
+              : 'glass text-text-secondary hover:text-text-primary hover:bg-dark-card-hover'
           }`}
         >
           This Week
         </button>
         <button
           onClick={() => setFilter('all')}
-          className={`px-6 py-3 rounded-lg font-medium ${
+          className={`px-6 py-3 rounded-lg font-medium transition-all ${
             filter === 'all'
-              ? 'bg-accent-primary text-white'
-              : 'bg-dark-card text-gray-400 hover:text-white hover:bg-dark-hover'
+              ? 'bg-gradient-emerald text-text-primary shadow-button'
+              : 'glass text-text-secondary hover:text-text-primary hover:bg-dark-card-hover'
           }`}
         >
           All Upcoming
@@ -130,28 +130,31 @@ function Home() {
       ) : (
         <div className="text-center py-16">
           <div className="text-6xl mb-4">🔍</div>
-          <h3 className="text-2xl font-display font-bold text-white mb-2">
+          <h3 className="text-2xl font-display font-bold text-text-primary mb-2">
             No activities found
           </h3>
-          <p className="text-gray-400">
-            {filter === 'today' 
-              ? "No activities happening today. Try checking 'This Week'!" 
+          <p className="text-text-secondary">
+            {filter === 'today'
+              ? "No activities happening today. Try checking 'This Week'!"
               : "Check back soon for new activities!"}
           </p>
         </div>
       )}
 
       {/* CTA Section */}
-      <div className="mt-16 bg-gradient-to-r from-accent-primary to-accent-secondary rounded-lg p-8 text-center">
-        <h2 className="font-display text-3xl font-bold text-white mb-4">
-          Organizing activities in Bhopal?
-        </h2>
-        <p className="text-white/90 mb-6 max-w-2xl mx-auto">
-          Join Soulstices Activity Hub as a group admin and connect with your community
-        </p>
-        <button className="bg-white text-accent-primary px-8 py-3 rounded-md font-bold hover:bg-gray-100">
-          Become a Group Admin
-        </button>
+      <div className="mt-16 glass rounded-2xl p-8 text-center border-t-2 border-transparent bg-gradient-brand bg-clip-border overflow-hidden relative">
+        <div className="absolute inset-0 bg-gradient-brand opacity-5"></div>
+        <div className="relative z-10">
+          <h2 className="font-display text-3xl font-bold text-text-primary mb-4">
+            Organizing activities in Bhopal?
+          </h2>
+          <p className="text-text-secondary mb-6 max-w-2xl mx-auto">
+            Join Soulstices Activity Hub as a group admin and connect with your community
+          </p>
+          <button className="bg-gradient-gold text-text-primary px-8 py-3 rounded-lg font-bold shadow-button-gold hover:-translate-y-1 transition-all">
+            Become a Group Admin
+          </button>
+        </div>
       </div>
     </div>
   )

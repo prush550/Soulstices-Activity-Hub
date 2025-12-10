@@ -254,24 +254,24 @@ function FounderDashboard() {
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       {/* Header */}
       <div className="mb-8">
-        <h1 className="font-display text-4xl font-bold text-white mb-2">
+        <h1 className="font-display text-4xl font-bold text-text-primary mb-2">
           Founder Dashboard
         </h1>
-        <p className="text-gray-400">
+        <p className="text-text-muted">
           Welcome back, {userProfile?.name}! Manage your platform from here.
         </p>
       </div>
 
       {/* Tabs */}
-      <div className="flex space-x-2 mb-8 border-b border-dark-border overflow-x-auto">
+      <div className="flex space-x-2 mb-8 border-b border-emerald/10 overflow-x-auto">
         {tabs.map((tab) => (
           <button
             key={tab.id}
             onClick={() => setActiveTab(tab.id)}
             className={`px-6 py-3 font-medium whitespace-nowrap transition-colors ${
               activeTab === tab.id
-                ? 'text-accent-primary border-b-2 border-accent-primary'
-                : 'text-gray-400 hover:text-white'
+                ? 'text-emerald border-b-2 border-emerald'
+                : 'text-text-muted hover:text-text-primary'
             }`}
           >
             <span className="mr-2">{tab.icon}</span>
@@ -285,39 +285,39 @@ function FounderDashboard() {
         {/* Overview Tab */}
         {activeTab === 'overview' && (
           <div className="space-y-6">
-            <h2 className="font-display text-2xl font-bold text-white">Platform Analytics</h2>
+            <h2 className="font-display text-2xl font-bold text-text-primary">Platform Analytics</h2>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-              <div className="bg-dark-card border border-dark-border rounded-lg p-6">
+              <div className="glass rounded-2xl border border-emerald/10 p-6 fade-in-up">
                 <div className="text-4xl mb-2">🏢</div>
-                <div className="text-3xl font-bold text-accent-primary mb-1">
+                <div className="text-3xl font-bold text-emerald mb-1">
                   {analytics.totalGroups}
                 </div>
-                <div className="text-gray-400 text-sm">Total Groups</div>
+                <div className="text-text-muted text-sm">Total Groups</div>
               </div>
 
-              <div className="bg-dark-card border border-dark-border rounded-lg p-6">
+              <div className="glass rounded-2xl border border-emerald/10 p-6 fade-in-up">
                 <div className="text-4xl mb-2">🎯</div>
-                <div className="text-3xl font-bold text-accent-primary mb-1">
+                <div className="text-3xl font-bold text-emerald mb-1">
                   {analytics.totalActivities}
                 </div>
-                <div className="text-gray-400 text-sm">Total Activities</div>
+                <div className="text-text-muted text-sm">Total Activities</div>
               </div>
 
-              <div className="bg-dark-card border border-dark-border rounded-lg p-6">
+              <div className="glass rounded-2xl border border-emerald/10 p-6 fade-in-up">
                 <div className="text-4xl mb-2">👥</div>
-                <div className="text-3xl font-bold text-accent-primary mb-1">
+                <div className="text-3xl font-bold text-emerald mb-1">
                   {analytics.totalUsers}
                 </div>
-                <div className="text-gray-400 text-sm">Total Users</div>
+                <div className="text-text-muted text-sm">Total Users</div>
               </div>
 
-              <div className="bg-dark-card border border-dark-border rounded-lg p-6">
+              <div className="glass rounded-2xl border border-emerald/10 p-6 fade-in-up">
                 <div className="text-4xl mb-2">✅</div>
-                <div className="text-3xl font-bold text-accent-primary mb-1">
+                <div className="text-3xl font-bold text-emerald mb-1">
                   {analytics.totalMembers}
                 </div>
-                <div className="text-gray-400 text-sm">Active Members</div>
+                <div className="text-text-muted text-sm">Active Members</div>
               </div>
             </div>
           </div>
@@ -326,12 +326,12 @@ function FounderDashboard() {
         {/* Create Group Tab */}
         {activeTab === 'create-group' && (
           <div className="max-w-2xl">
-            <h2 className="font-display text-2xl font-bold text-white mb-6">Create New Group</h2>
+            <h2 className="font-display text-2xl font-bold text-text-primary mb-6">Create New Group</h2>
 
-            <form onSubmit={handleCreateGroup} className="bg-dark-card border border-dark-border rounded-lg p-6 space-y-6">
+            <form onSubmit={handleCreateGroup} className="glass rounded-2xl border border-emerald/10 p-6 space-y-6">
               {/* Group Name */}
               <div>
-                <label className="block text-sm font-medium text-gray-300 mb-2">
+                <label className="block text-sm font-medium text-text-secondary mb-2">
                   Group Name *
                 </label>
                 <input
@@ -339,14 +339,14 @@ function FounderDashboard() {
                   required
                   value={groupForm.name}
                   onChange={(e) => setGroupForm({ ...groupForm, name: e.target.value })}
-                  className="w-full bg-dark-bg border border-dark-border rounded-md px-4 py-2 text-white focus:outline-none focus:ring-2 focus:ring-accent-primary"
+                  className="w-full bg-dark-card border border-emerald/20 rounded-lg px-4 py-2 text-text-primary focus:outline-none focus:border-emerald transition-colors"
                   placeholder="e.g., Bhopal Badminton Club"
                 />
               </div>
 
               {/* Description */}
               <div>
-                <label className="block text-sm font-medium text-gray-300 mb-2">
+                <label className="block text-sm font-medium text-text-secondary mb-2">
                   Description *
                 </label>
                 <textarea
@@ -354,14 +354,14 @@ function FounderDashboard() {
                   value={groupForm.description}
                   onChange={(e) => setGroupForm({ ...groupForm, description: e.target.value })}
                   rows="4"
-                  className="w-full bg-dark-bg border border-dark-border rounded-md px-4 py-2 text-white focus:outline-none focus:ring-2 focus:ring-accent-primary"
+                  className="w-full bg-dark-card border border-emerald/20 rounded-lg px-4 py-2 text-text-primary focus:outline-none focus:border-emerald transition-colors"
                   placeholder="Describe what this group is about..."
                 />
               </div>
 
               {/* Category */}
               <div>
-                <label className="block text-sm font-medium text-gray-300 mb-2">
+                <label className="block text-sm font-medium text-text-secondary mb-2">
                   Category *
                 </label>
                 <input
@@ -369,21 +369,21 @@ function FounderDashboard() {
                   required
                   value={groupForm.category}
                   onChange={(e) => setGroupForm({ ...groupForm, category: e.target.value })}
-                  className="w-full bg-dark-bg border border-dark-border rounded-md px-4 py-2 text-white focus:outline-none focus:ring-2 focus:ring-accent-primary"
+                  className="w-full bg-dark-card border border-emerald/20 rounded-lg px-4 py-2 text-text-primary focus:outline-none focus:border-emerald transition-colors"
                   placeholder="e.g., Sports, Fitness, Leisure"
                 />
               </div>
 
               {/* Joining Type */}
               <div>
-                <label className="block text-sm font-medium text-gray-300 mb-2">
+                <label className="block text-sm font-medium text-text-secondary mb-2">
                   Joining Type *
                 </label>
                 <select
                   required
                   value={groupForm.joining_type}
                   onChange={(e) => setGroupForm({ ...groupForm, joining_type: e.target.value })}
-                  className="w-full bg-dark-bg border border-dark-border rounded-md px-4 py-2 text-white focus:outline-none focus:ring-2 focus:ring-accent-primary"
+                  className="w-full bg-dark-card border border-emerald/20 rounded-lg px-4 py-2 text-text-primary focus:outline-none focus:border-emerald transition-colors"
                 >
                   <option value="public">Public - Anyone can join</option>
                   <option value="invite_only">Invite Only - Requires invite link</option>
@@ -393,14 +393,14 @@ function FounderDashboard() {
 
               {/* Cover Image URL */}
               <div>
-                <label className="block text-sm font-medium text-gray-300 mb-2">
+                <label className="block text-sm font-medium text-text-secondary mb-2">
                   Cover Image URL (optional)
                 </label>
                 <input
                   type="url"
                   value={groupForm.cover_image}
                   onChange={(e) => setGroupForm({ ...groupForm, cover_image: e.target.value })}
-                  className="w-full bg-dark-bg border border-dark-border rounded-md px-4 py-2 text-white focus:outline-none focus:ring-2 focus:ring-accent-primary"
+                  className="w-full bg-dark-card border border-emerald/20 rounded-lg px-4 py-2 text-text-primary focus:outline-none focus:border-emerald transition-colors"
                   placeholder="https://example.com/image.jpg"
                 />
               </div>
@@ -444,7 +444,7 @@ function FounderDashboard() {
               <button
                 type="submit"
                 disabled={createGroupLoading}
-                className="w-full bg-accent-primary hover:bg-accent-secondary text-white font-medium py-3 rounded-md disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full bg-gradient-gold shadow-button-gold text-text-primary font-medium py-3 rounded-xl hover:-translate-y-1 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {createGroupLoading ? 'Creating...' : 'Create Group'}
               </button>
@@ -455,9 +455,9 @@ function FounderDashboard() {
         {/* Assign Admin Tab */}
         {activeTab === 'assign-admin' && (
           <div className="max-w-2xl">
-            <h2 className="font-display text-2xl font-bold text-white mb-6">Assign Group Admin</h2>
+            <h2 className="font-display text-2xl font-bold text-text-primary mb-6">Assign Group Admin</h2>
 
-            <form onSubmit={handleAssignAdmin} className="bg-dark-card border border-dark-border rounded-lg p-6 space-y-6">
+            <form onSubmit={handleAssignAdmin} className="glass rounded-2xl border border-emerald/10 p-6 space-y-6">
               {/* Select Group */}
               <div>
                 <label className="block text-sm font-medium text-gray-300 mb-2">
@@ -513,7 +513,7 @@ function FounderDashboard() {
               <button
                 type="submit"
                 disabled={assignAdminLoading}
-                className="w-full bg-accent-primary hover:bg-accent-secondary text-white font-medium py-3 rounded-md disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full bg-gradient-emerald shadow-button text-text-primary font-medium py-3 rounded-xl hover:-translate-y-1 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {assignAdminLoading ? 'Assigning...' : 'Assign as Admin'}
               </button>
@@ -524,34 +524,34 @@ function FounderDashboard() {
         {/* Manage Groups Tab */}
         {activeTab === 'manage-groups' && (
           <div>
-            <h2 className="font-display text-2xl font-bold text-white mb-6">All Groups</h2>
+            <h2 className="font-display text-2xl font-bold text-text-primary mb-6">All Groups</h2>
 
             <div className="space-y-4">
               {allGroups.length === 0 ? (
-                <div className="bg-dark-card border border-dark-border rounded-lg p-12 text-center">
+                <div className="glass rounded-2xl border border-emerald/10 p-12 text-center">
                   <div className="text-6xl mb-4">🏢</div>
-                  <p className="text-gray-400 mb-4">No groups created yet</p>
+                  <p className="text-text-muted mb-4">No groups created yet</p>
                   <button
                     onClick={() => setActiveTab('create-group')}
-                    className="bg-accent-primary hover:bg-accent-secondary text-white px-6 py-2 rounded-md font-medium"
+                    className="bg-gradient-gold shadow-button-gold text-text-primary px-6 py-2 rounded-xl font-medium hover:-translate-y-1 transition-all"
                   >
                     Create First Group
                   </button>
                 </div>
               ) : (
                 allGroups.map((group) => (
-                  <div key={group.id} className="bg-dark-card border border-dark-border rounded-lg p-6">
+                  <div key={group.id} className="glass rounded-2xl border border-emerald/10 p-6">
                     <div className="flex justify-between items-start mb-4">
                       <div className="flex-1">
-                        <h3 className="font-display text-xl font-bold text-white mb-1">
+                        <h3 className="font-display text-xl font-bold text-text-primary mb-1">
                           {group.name}
                         </h3>
-                        <p className="text-sm text-gray-400 mb-2">{group.description}</p>
+                        <p className="text-sm text-text-muted mb-2">{group.description}</p>
                         <div className="flex flex-wrap gap-2 text-sm">
-                          <span className="bg-accent-primary/20 text-accent-primary px-3 py-1 rounded-full">
+                          <span className="bg-emerald/15 border border-emerald/30 text-emerald px-3 py-1 rounded-full text-[11px] uppercase font-medium tracking-wide">
                             {group.category}
                           </span>
-                          <span className="bg-purple-500/20 text-purple-300 px-3 py-1 rounded-full">
+                          <span className="bg-gold/15 border border-gold/30 text-gold px-3 py-1 rounded-full text-[11px] uppercase font-medium tracking-wide">
                             {group.joining_type.replace('_', ' ')}
                           </span>
                         </div>
@@ -559,23 +559,23 @@ function FounderDashboard() {
                     </div>
 
                     {/* Admins */}
-                    <div className="border-t border-dark-border pt-4 mt-4">
-                      <h4 className="text-sm font-medium text-gray-300 mb-2">Admins:</h4>
+                    <div className="border-t border-emerald/10 pt-4 mt-4">
+                      <h4 className="text-sm font-medium text-text-secondary mb-2">Admins:</h4>
                       {group.group_admins && group.group_admins.length > 0 ? (
                         <div className="space-y-1">
                           {group.group_admins.map((admin) => (
-                            <div key={admin.user.id} className="text-sm text-gray-400">
+                            <div key={admin.user.id} className="text-sm text-text-muted">
                               👤 {admin.user.name} ({admin.user.email})
                             </div>
                           ))}
                         </div>
                       ) : (
-                        <p className="text-sm text-gray-500 italic">No admins assigned yet</p>
+                        <p className="text-sm text-text-muted italic">No admins assigned yet</p>
                       )}
                     </div>
 
                     {/* Stats */}
-                    <div className="border-t border-dark-border pt-4 mt-4 flex items-center space-x-6 text-sm text-gray-400">
+                    <div className="border-t border-emerald/10 pt-4 mt-4 flex items-center space-x-6 text-sm text-text-muted">
                       <span>👥 {group.member_count || 0} members</span>
                       <span>📅 Created {new Date(group.created_at).toLocaleDateString()}</span>
                     </div>
