@@ -72,6 +72,20 @@ export const AuthProvider = ({ children }) => {
 
   const signUp = async (email, password, name) => {
     try {
+      // First check if user already exists
+      const { data: existingUser } = await supabase
+        .from('users')
+        .select('email')
+        .eq('email', email)
+        .single()
+
+      if (existingUser) {
+        return {
+          data: null,
+          error: { message: 'An account with this email already exists. Please sign in instead.' }
+        }
+      }
+
       const { data, error } = await supabase.auth.signUp({
         email,
         password,
@@ -79,13 +93,23 @@ export const AuthProvider = ({ children }) => {
           data: {
             name
           },
-          emailRedirectTo: `${window.location.origin}/`
+          emailRedirectTo: `${window.location.origin}/signin`
         }
       })
 
       if (error) throw error
+
+      // Check if user was created successfully
+      if (data?.user && !data?.user?.identities?.length) {
+        return {
+          data: null,
+          error: { message: 'An account with this email already exists. Please sign in instead.' }
+        }
+      }
+
       return { data, error: null }
     } catch (error) {
+      console.error('Signup error:', error)
       return { data: null, error }
     }
   }
